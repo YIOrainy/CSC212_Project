@@ -59,8 +59,33 @@ public class LinkedList {
 		}
 		// this loop it's make sure the name or the phone number to be unique in the
 		// list
+	
+		
+			if (current.getData().compareTo(e) == 0) {
+				System.out.println("Already there is a name like this in the List");
+				return;
+			}
+			if (current.getData().getPhoneNumber().compareTo(e.getPhoneNumber()) == 0) {
+				System.out.println("Already there is a phone number like this in the List");
+				return;
+			}
+			
+		
+		// here it checks if the new contact's name should be in the first list or not
+		// according to alphabetically order
 		current = head;
-		while (current != null) {
+		if (head.getData().compareTo(e) > 0) {
+			newNode.setNext(head);
+			head = newNode;
+			System.out.println("Contact added successfully!");
+			return;
+		}
+		// this loop it's make sure the name or the phone number to be unique in the list and then compare the new contact's name with the contact's name in the list according to alphabetically order
+		else {
+			current = head;
+			Node p = null;
+			while (current != null && current.getData().compareTo(e) < 0) {
+				p = current;
 			if (current.getData().compareTo(e) == 0) {
 				System.out.println("Already there is a name like this in the List");
 				return;
@@ -70,23 +95,6 @@ public class LinkedList {
 				return;
 			}
 			current = current.getNext();
-		}
-		// here it checks if the new contact's name should be in the first list or no
-		// according to alphabetically order
-		current = head;
-		if (head.getData().compareTo(e) > 0) {
-			newNode.setNext(head);
-			head = newNode;
-			System.out.println("Contact added successfully!");
-			return;
-		}
-		// here it checks where should be the new contact's name be in the list
-		else {
-			current = head;
-			Node p = null;
-			while (current != null && current.getData().compareTo(e) < 0) {
-				p = current;
-				current = current.getNext();
 			}
 			p.setNext(newNode);
 			newNode.setNext(current);

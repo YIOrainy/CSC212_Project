@@ -111,8 +111,11 @@ public class LinkedList {
 	// this method remove a contact from the list if and only if the contact in
 	// parameter has the same number or name of contact in the list.
 	public void removeContact(String name_Number) {
-		if (empty())
+		if (empty()) {
+			
+			System.out.println("There is no Contacts to delete!");
 			return;
+		}
 
 		current = head;
 		Node p = null;

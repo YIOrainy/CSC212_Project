@@ -167,5 +167,16 @@ public class LinkedList {
 		return tmp;
 
 	}
+	
+	public void printAll() {
+		if(head == null)
+			System.out.println("No Added Contacts yet!");
+		Node curr = head;
+		while(curr != null) {
+			curr.getData().print();
+			curr = curr.getNext();
+		}
+		
+	}
 
 }

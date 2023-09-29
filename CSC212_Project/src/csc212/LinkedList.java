@@ -112,7 +112,6 @@ public class LinkedList {
 	// parameter has the same number or name of contact in the list.
 	public void removeContact(String name_Number) {
 		if (empty()) {
-			
 			System.out.println("There is no Contacts to delete!");
 			return;
 		}
@@ -127,8 +126,10 @@ public class LinkedList {
 			current = current.getNext();
 		}
 		if (!current.getData().getPhoneNumber().equals(name_Number)
-				&& (!current.getData().getName().equalsIgnoreCase(name_Number)))
+				&& (!current.getData().getName().equalsIgnoreCase(name_Number))){
+			System.out.println("Contact not found to delete! ")
 			return;
+		}
 		if (p == null) {
 			head = head.getNext();
 			current = head;

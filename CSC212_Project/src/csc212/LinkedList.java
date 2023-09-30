@@ -127,7 +127,7 @@ public class LinkedList {
 		}
 		if (!current.getData().getPhoneNumber().equals(name_Number)
 				&& (!current.getData().getName().equalsIgnoreCase(name_Number))){
-			System.out.println("Contact not found to delete! ")
+			System.out.println("Contact not found to delete! ");
 			return;
 		}
 		if (p == null) {

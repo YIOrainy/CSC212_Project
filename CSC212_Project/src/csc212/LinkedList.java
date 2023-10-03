@@ -35,7 +35,7 @@ public class LinkedList<T extends Comparable<T>> {
 	public boolean last() {
 		return current.getNext() == null;
 	}
-
+	// sorted insert
 	public void insert(T val) {
 		Node<T> newNode = new Node<T>(val);
 		if (empty()) {

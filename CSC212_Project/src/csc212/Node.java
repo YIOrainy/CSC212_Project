@@ -1,27 +1,28 @@
 package csc212;
 
-public class Node {
-	private Contact data;
-	private Node next;
 
-	public Node(Contact data) {
+public class Node<T> {
+	private T data;
+	private Node<T> next;
+
+	public Node(T data) {
 		this.data = data;
 		next = null;
 	}
 
-	public void setData(Contact data) {
-		this.data = data;
-	}
-
-	public Contact getData() {
-		return this.data;
-	}
-
-	public void setNext(Node next) {
+	public void setNext(Node<T> next) {
 		this.next = next;
 	}
 
-	public Node getNext() {
+	public Node<T> getNext() {
 		return this.next;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+	public T getData() {
+		return this.data;
 	}
 }

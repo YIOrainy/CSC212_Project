@@ -1,5 +1,7 @@
 package csc212;
 
+
+
 import java.util.Scanner;
 
 
@@ -46,7 +48,7 @@ public class PhoneBook {
 				input.nextLine();
 				switch (criteria) {// we use exception inside the switch because the search method may return null
 				case 1:
-					System.out.print("Enter the contact's name: ");
+					System.out.print("Enter the contact's name:");
 					String name = input.nextLine();
 					try {
 						searchContact(name).retrieve().print();
@@ -56,7 +58,7 @@ public class PhoneBook {
 					}
 					break;
 				case 2:
-					System.out.print("Enter the contact's phone number: ");
+					System.out.print("Enter the contact's phone number:");
 					String phoneNumber = input.nextLine();
 					try {
 						searchContact(phoneNumber).retrieve().print();
@@ -66,7 +68,7 @@ public class PhoneBook {
 					}
 					break;
 				case 3:
-					System.out.print("Enter the contact's email address: ");
+					System.out.print("Enter the contact's email address:");
 					String email = input.nextLine();
 					LinkedList<Contact> z = new LinkedList<>();
 					z = searchContact(email);
@@ -155,6 +157,7 @@ public class PhoneBook {
 
 		contact = new Contact(name, phoneNumber, emailAddress, address, birthday, notes);
 		if (c.empty()) {
+			System.out.println("Contact added successfully! ");
 			c.insert(contact);
 			return;
 		}
@@ -172,7 +175,9 @@ public class PhoneBook {
 			System.out.println("This contact's has a name or phone number already in the contacts!");
 			return;
 		}
+		System.out.println("Contact added successfully! ");
 		c.insert(contact);
+		
 
 	}
 
@@ -224,7 +229,8 @@ public class PhoneBook {
 			if (c.retrieve().getName().equalsIgnoreCase(attribute)
 					|| c.retrieve().getPhoneNumber().equalsIgnoreCase(attribute)) {
 				tmp.insert(c.retrieve());
-				break;
+				return tmp;
+				
 			}
 			if (c.retrieve().getEmailAddress().equalsIgnoreCase(attribute)
 					|| c.retrieve().getBirthday().equalsIgnoreCase(attribute)

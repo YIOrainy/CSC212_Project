@@ -46,20 +46,100 @@ public class Main {
                     System.out.println("\nContact added successfully!");
                     break;
                 case 2:
-                    System.out.print("Enter the contact's name: ");
-                    name = sc.nextLine();
+                    System.out.println("Enter search criteria:");
+                    System.out.println("1. Name");
+                    System.out.println("2. Phone Number");
+                    System.out.println("3. Email Address");
+                    System.out.println("4. Address");
+                    System.out.println("5. Birthday");
                     System.out.println("");
-
-                    Contact foundContact = phonebook.searchContactByName(name);
-                    if (foundContact != null) {
-                        System.out.println("Name: " + foundContact.getName());
-                        System.out.println("Phone Number: " + foundContact.getPhoneNumber());
-                        System.out.println("Email Address: " + foundContact.getEmailAddress());
-                        System.out.println("Address: " + foundContact.getAddress());
-                        System.out.println("Birthday: " + foundContact.getBirthday());
-                        System.out.println("Notes: " + foundContact.getNotes());
-                    } else {
-                        System.out.println("\nContact not found.");
+                    System.out.print("Enter your choice: ");
+                    int searchChoice = sc.nextInt();
+                    sc.nextLine();  // Consume newline
+                    System.out.println("");
+                    switch(searchChoice){
+                        case 1:
+                            System.out.print("Enter the contact's name: ");
+                            name = sc.nextLine();
+                            System.out.println("");
+                            Contact foundContact = phonebook.searchContactByName(name);
+                            if (foundContact != null) {
+                                System.out.println("Name: " + foundContact.getName());
+                                System.out.println("Phone Number: " + foundContact.getPhoneNumber());
+                                System.out.println("Email Address: " + foundContact.getEmailAddress());
+                                System.out.println("Address: " + foundContact.getAddress());
+                                System.out.println("Birthday: " + foundContact.getBirthday());
+                                System.out.println("Notes: " + foundContact.getNotes());
+                            } else {
+                                System.out.println("\nContact not found.");
+                            }
+                            break;
+                        case 2:
+                            System.out.print("Enter the contact's phone number: ");
+                            phoneNumber = sc.nextLine();
+                            System.out.println("");
+                            foundContact = phonebook.searchContactByPhoneNumber(phoneNumber);
+                            if (foundContact != null) {
+                                System.out.println("Name: " + foundContact.getName());
+                                System.out.println("Phone Number: " + foundContact.getPhoneNumber());
+                                System.out.println("Email Address: " + foundContact.getEmailAddress());
+                                System.out.println("Address: " + foundContact.getAddress());
+                                System.out.println("Birthday: " + foundContact.getBirthday());
+                                System.out.println("Notes: " + foundContact.getNotes());
+                            } else {
+                                System.out.println("\nContact not found.");
+                            }
+                            break;
+                        case 3:
+                            System.out.print("Enter the contact's email address: ");
+                            email = sc.nextLine();
+                            System.out.println("");
+                            foundContact = phonebook.searchContactByEmail(email);
+                            if (foundContact != null) {
+                                System.out.println("Name: " + foundContact.getName());
+                                System.out.println("Phone Number: " + foundContact.getPhoneNumber());
+                                System.out.println("Email Address: " + foundContact.getEmailAddress());
+                                System.out.println("Address: " + foundContact.getAddress());
+                                System.out.println("Birthday: " + foundContact.getBirthday());
+                                System.out.println("Notes: " + foundContact.getNotes());
+                            } else {
+                                System.out.println("\nContact not found.");
+                            }
+                            break;
+                        case 4:
+                            System.out.print("Enter the contact's address: ");
+                            address = sc.nextLine();
+                            System.out.println("");
+                            foundContact = phonebook.searchContactByAddress(address);
+                            if (foundContact != null) {
+                                System.out.println("Name: " + foundContact.getName());
+                                System.out.println("Phone Number: " + foundContact.getPhoneNumber());
+                                System.out.println("Email Address: " + foundContact.getEmailAddress());
+                                System.out.println("Address: " + foundContact.getAddress());
+                                System.out.println("Birthday: " + foundContact.getBirthday());
+                                System.out.println("Notes: " + foundContact.getNotes());
+                            } else {
+                                System.out.println("\nContact not found.");
+                            }
+                            break;
+                        case 5:
+                            System.out.print("Enter the contact's birthday: ");
+                            birthday = sc.nextLine();
+                            System.out.println("");
+                            foundContact = phonebook.searchContactByBirthday(birthday);
+                            if (foundContact != null) {
+                                System.out.println("Name: " + foundContact.getName());
+                                System.out.println("Phone Number: " + foundContact.getPhoneNumber());
+                                System.out.println("Email Address: " + foundContact.getEmailAddress());
+                                System.out.println("Address: " + foundContact.getAddress());
+                                System.out.println("Birthday: " + foundContact.getBirthday());
+                                System.out.println("Notes: " + foundContact.getNotes());
+                            } else {
+                                System.out.println("\nContact not found.");
+                            }
+                            break;
+                        default:
+                            System.out.println("\nInvalid choice. Please try again.");
                     }
                     break;
                 case 3:

@@ -49,15 +49,19 @@ public class Phonebook {
         }
     }
 
-    public void scheduleEvent(Event event) {
-        for (Event e : events) {
-            if (e.getContact().equals(event.getContact()) && e.getDateAndTime().equals(event.getDateAndTime())) {
-                System.out.println("Event conflict detected. Event not scheduled.");
-                return;
-            }
-        }
-        events.add(event);
-    }
+	public void scheduleEvent(Event event) {
+		if (searchContactByName(event.getContact().getName()) == null) {
+			System.out.println("Contact does not exist in the phonebook. Event not scheduled.");
+			return;
+		}
+		for (Event e : events) {
+			if (e.getContact().equals(event.getContact()) && e.getDateAndTime().equals(event.getDateAndTime())) {
+				System.out.println("Event conflict detected. Event not scheduled.");
+				return;
+			}
+		}
+		events.add(event);
+	}
 
     public Event searchEventByTitle(String title) {
         for (Event e : events) {

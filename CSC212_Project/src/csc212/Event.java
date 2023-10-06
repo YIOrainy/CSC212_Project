@@ -1,65 +1,47 @@
 package csc212;
 
-import java.time.LocalDateTime;
+import java.util.Objects;
 
-public class Event implements Comparable<Event> {
-
+public class Event {
     private String title;
-    private LocalDateTime dateTime;
+    private String dateAndTime;
     private String location;
     private Contact contact;
 
-    public Event(String title, LocalDateTime dateTime, String location, Contact contact) {
+    public Event(String title, String dateAndTime, String location, Contact contact) {
         this.title = title;
-        this.dateTime = dateTime;
+        this.dateAndTime = dateAndTime;
         this.location = location;
         this.contact = contact;
     }
 
-    // Implement compareTo for sorting based on title
-    @Override
-    public int compareTo(Event other) {
-        return this.title.compareTo(other.title);
-    }
-
-    // Getters and Setters
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public String getDateAndTime() {
+        return dateAndTime;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public Contact getContact() {
         return contact;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Event event = (Event) obj;
+        return title.equals(event.title);
     }
 
     @Override
-    public String toString() {
-        return "Event title: " + title + 
-               "\nContact name: " + contact.getName() + 
-               "\nEvent date and time: " + dateTime + 
-               "\nEvent location: " + location;
+    public int hashCode() {
+        return Objects.hash(title);
     }
 }
+

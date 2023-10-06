@@ -28,6 +28,17 @@ public class Phonebook {
         return contactsList.searchByFirstName(firstName);
     }
 
+	public List<Event> searchEventsByContactName(String contactName) {
+		List<Event> matchingEvents = new ArrayList<>();
+		for (Event e : events) {
+			if (e.getContact().getName().equals(contactName)) {
+				matchingEvents.add(e);
+			}
+		}
+		return matchingEvents;
+	}
+	
+
     public void deleteContact(String name) {
         Contact contact = contactsList.searchByName(name);
         if (contact != null) {

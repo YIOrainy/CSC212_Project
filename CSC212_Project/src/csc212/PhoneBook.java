@@ -5,6 +5,7 @@ package csc212;
 import java.util.Scanner;
 
 
+
 public class PhoneBook {
 	private LinkedList<Contact> c; // c stands for contact.
 	Scanner input = new Scanner(System.in);
@@ -50,73 +51,97 @@ public class PhoneBook {
 				case 1:
 					System.out.print("Enter the contact's name:");
 					String name = input.nextLine();
+					System.out.println(" ");
 					try {
-						searchContact(name).retrieve().print();
-						System.out.println("Contact found");
+						if (searchContact(criteria,name).retrieve().getName().equalsIgnoreCase(name)) {
+							System.out.println("Contact found");
+							searchContact(criteria,name).retrieve().print();
+						}
 					} catch (NullPointerException e) {
-						System.out.println("The name you were searching about not found!");
+						System.out.println("Contact Not Found");
 					}
 					break;
 				case 2:
 					System.out.print("Enter the contact's phone number:");
 					String phoneNumber = input.nextLine();
+					System.out.println(" ");
+
 					try {
-						searchContact(phoneNumber).retrieve().print();
-						System.out.println("Contact found");
+						if (searchContact(criteria,phoneNumber).retrieve().getPhoneNumber().equalsIgnoreCase(phoneNumber)) {
+							System.out.println("Contact found");
+							searchContact(criteria,phoneNumber).retrieve().print();
+						}
 					} catch (NullPointerException e) {
-						System.out.println("The phone number you were searching about not found!");
+						System.out.println("Contact Not Found");
 					}
 					break;
 				case 3:
 					System.out.print("Enter the contact's email address:");
 					String email = input.nextLine();
-					LinkedList<Contact> z = new LinkedList<>();
-					z = searchContact(email);
-					z.findFirst();
+					LinkedList<Contact> forSameEmail = new LinkedList<>();
+					System.out.println(" ");
+
 					try {
-						while (!z.last()) {
-							z.retrieve().print();
-							z.findNext();
+						forSameEmail = searchContact(criteria,email);
+						forSameEmail.findFirst();
+						if (searchContact(criteria,email).retrieve().getEmailAddress().equalsIgnoreCase(email))
+							System.out.println("Contact Found");
+						while (!forSameEmail.last()) {
+							forSameEmail.retrieve().print();
+							forSameEmail.findNext();
 						}
-						z.retrieve().print();
+						forSameEmail.retrieve().print();
 					} catch (NullPointerException e) {
-						System.out.println("No one in the contacts has the same email address you have enterd");
+						System.out.println("Contact Not Found");
 					}
 					break;
+					
 				case 4:
-					System.out.print("Enter the contact's address address: ");
+					System.out.print("Enter the contact's address: ");
 					String address = input.nextLine();
-					z = new LinkedList<>();
-					z = searchContact(address);
-					z.findFirst();
+					LinkedList<Contact> forSameAddress = new LinkedList<>();
+
 					try {
-						while (!z.last()) {
-							z.retrieve().print();
-							z.findNext();
+						forSameAddress = searchContact(criteria,address);
+						forSameAddress.findFirst();
+						if (searchContact(criteria,address).retrieve().getAddress().equalsIgnoreCase(address))
+							System.out.println("Contact Found");
+						while (!forSameAddress.last()) {
+							if (forSameAddress.retrieve().getAddress().equalsIgnoreCase(address))
+								forSameAddress.retrieve().print();
+							forSameAddress.findNext();
 						}
-						z.retrieve().print();
+						if (forSameAddress.retrieve().getAddress().equalsIgnoreCase(address))
+							forSameAddress.retrieve().print();
 					} catch (NullPointerException e) {
-						System.out.println("No one in the contacts has the same address you have enterd");
+						System.out.println("Contact Not Found");
 					}
 					break;
 				case 5:
-					System.out.print("Enter the contact's birthday address: ");
+					System.out.print("Enter the contact's birthday: ");
 					String birthday = input.nextLine();
-					z = new LinkedList<>();
-					z = searchContact(birthday);
-					z.findFirst();
+					LinkedList<Contact> forSameBirthday = new LinkedList<>();
+
 					try {
-						while (!z.last()) {
-							z.retrieve().print();
-							z.findNext();
+						forSameBirthday = searchContact(criteria,birthday);
+						forSameBirthday.findFirst();
+						if (searchContact(criteria,birthday).retrieve().getBirthday().equalsIgnoreCase(birthday))
+							System.out.println("Contact Found");
+						while (!forSameBirthday.last()) {
+							if (forSameBirthday.retrieve().getBirthday().equalsIgnoreCase(birthday))
+								forSameBirthday.retrieve().print();
+							forSameBirthday.findNext();
 						}
-						z.retrieve().print();
+						if (forSameBirthday.retrieve().getBirthday().equalsIgnoreCase(birthday))
+							forSameBirthday.retrieve().print();
+
 					} catch (NullPointerException e) {
-						System.out.println("No one in the contacts has the same birthday you have enterd");
+						System.out.println("Contact Not Found");
 					}
 					break;
 				}
 				break;
+
 			case 5:
 				// 5. Print event details
 				break;
@@ -133,6 +158,7 @@ public class PhoneBook {
 
 		} while (choice != 8);
 		System.out.println("Good bye");
+
 	}
 
 	public void addContact() {
@@ -177,34 +203,39 @@ public class PhoneBook {
 		}
 		System.out.println("Contact added successfully! ");
 		c.insert(contact);
-		
 
 	}
 
 	public void deleteContact() {
 		int chose;
 		String attribute;
+		System.out.println(" ");
 		System.out.println("1.Contact's name:");
 		System.out.println("2.Contact's phone number: ");
-		System.out.print("Chose: ");
+		System.out.print("Enter your Chose: ");
 		chose = input.nextInt();
+		System.out.println(" ");
 		input.nextLine();
-		if (chose == 1)
+		if (chose == 1) {
 			System.out.print("Enter the name you want to remove from contacts: ");
-		else if (chose == 2)
+		} else if (chose == 2) {
 			System.out.print("Enter the phone number you want to remove from contacts: ");
-		else {
+		} else {
 			System.out.println("Wrong number !");
+			System.out.println(" ");
 			return;
 		}
 		attribute = input.nextLine();
+		System.out.println(" ");
 		c.findFirst();
 		try {
 			while (!c.last()) {
 				if (c.retrieve().getName().equalsIgnoreCase(attribute)
 						|| c.retrieve().getPhoneNumber().equalsIgnoreCase(attribute)) {
 					c.remove();
+
 					System.out.println("Contact removed!");
+					System.out.println(" ");
 					return;
 				}
 				c.findNext();
@@ -219,37 +250,8 @@ public class PhoneBook {
 
 		} catch (NullPointerException e) {
 			System.out.println("Can not remove from an empty contact!");
+			System.out.println(" ");
 		}
-	}
-
-	public LinkedList<Contact> searchContact(String attribute) {
-		LinkedList<Contact> tmp = new LinkedList<>();
-		c.findFirst();
-		while (!c.last()) {
-			if (c.retrieve().getName().equalsIgnoreCase(attribute)
-					|| c.retrieve().getPhoneNumber().equalsIgnoreCase(attribute)) {
-				tmp.insert(c.retrieve());
-				return tmp;
-				
-			}
-			if (c.retrieve().getEmailAddress().equalsIgnoreCase(attribute)
-					|| c.retrieve().getBirthday().equalsIgnoreCase(attribute)
-					|| c.retrieve().getAddress().equalsIgnoreCase(attribute)) {
-				tmp.insert(c.retrieve());
-			}
-			c.findNext();
-		}
-		if (c.retrieve().getName().equalsIgnoreCase(attribute)
-				|| c.retrieve().getPhoneNumber().equalsIgnoreCase(attribute)) {
-			tmp.insert(c.retrieve());
-			return tmp;
-		}
-		if (c.retrieve().getEmailAddress().equalsIgnoreCase(attribute)
-				|| c.retrieve().getBirthday().equalsIgnoreCase(attribute)
-				|| c.retrieve().getAddress().equalsIgnoreCase(attribute)) {
-			tmp.insert(c.retrieve());
-		}
-		return tmp;
 	}
 
 	public void printInfo() { // this method just for checking it will remove later
@@ -264,6 +266,53 @@ public class PhoneBook {
 		}
 		c.retrieve().print();
 
+	}
+
+	public LinkedList<Contact> searchContact(int criteria, String attribute) {
+		LinkedList<Contact> tmp = new LinkedList<>();
+		c.findFirst();
+		while (!c.last()) {
+			if (criteria == 1)
+				if (c.retrieve().getName().equalsIgnoreCase(attribute)) {
+					tmp.insert(c.retrieve());
+					
+				}
+			if (criteria == 2)
+				if (c.retrieve().getPhoneNumber().equalsIgnoreCase(attribute)) {
+					tmp.insert(c.retrieve());
+					
+				}
+			if (criteria == 3)
+				if (c.retrieve().getEmailAddress().equalsIgnoreCase(attribute))
+					tmp.insert(c.retrieve());
+			if (criteria == 4)
+				if (c.retrieve().getAddress().equalsIgnoreCase(attribute))
+					tmp.insert(c.retrieve());
+			if (criteria == 5)
+				if (c.retrieve().getBirthday().equalsIgnoreCase(attribute))
+					tmp.insert(c.retrieve());
+			c.findNext();
+		}
+		if (criteria == 1)
+			if (c.retrieve().getName().equalsIgnoreCase(attribute)) {
+				tmp.insert(c.retrieve());
+				return tmp;
+			}
+		if (criteria == 2)
+			if (c.retrieve().getPhoneNumber().equalsIgnoreCase(attribute)) {
+				tmp.insert(c.retrieve());
+				return tmp;
+			}
+		if (criteria == 3)
+			if (c.retrieve().getEmailAddress().equalsIgnoreCase(attribute))
+				tmp.insert(c.retrieve());
+		if (criteria == 4)
+			if (c.retrieve().getAddress().equalsIgnoreCase(attribute))
+				tmp.insert(c.retrieve());
+		if (criteria == 5)
+			if (c.retrieve().getBirthday().equalsIgnoreCase(attribute))
+				tmp.insert(c.retrieve());
+		return tmp;
 	}
 
 }

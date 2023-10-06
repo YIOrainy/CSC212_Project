@@ -39,7 +39,7 @@ public class PhoneBook {
 				deleteContact();
 				break;
 			case 3:
-				printInfo();// for checking it will remove later
+				printInfo();// for checking it will remove later 
 				break;
 			case 4:
 				System.out.println("Enter search criteria: ");
@@ -141,7 +141,7 @@ public class PhoneBook {
 					break;
 				}
 				break;
-
+				// 4.Schedule an event
 			case 5:
 				// 5. Print event details
 				break;

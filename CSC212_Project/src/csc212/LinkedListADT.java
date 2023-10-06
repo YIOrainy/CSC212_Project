@@ -63,6 +63,50 @@ public class LinkedListADT {
         return contacts;
     }
 
+    public Contact searchByPhoneNumber(String phoneNumber) {
+        Node current = head;
+        while (current != null) {
+            if (current.contact.getPhoneNumber().equals(phoneNumber)) {
+                return current.contact;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    public Contact searchByEmail(String email) {
+        Node current = head;
+        while (current != null) {
+            if (current.contact.getEmailAddress().equals(email)) {
+                return current.contact;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    public Contact searchByAddress(String address) {
+        Node current = head;
+        while (current != null) {
+            if (current.contact.getAddress().equals(address)) {
+                return current.contact;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    public Contact searchByBirthday(String birthday) {
+        Node current = head;
+        while (current != null) {
+            if (current.contact.getBirthday().equals(birthday)) {
+                return current.contact;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
     public void deleteContact(String name) {
         if (head == null) return;
 

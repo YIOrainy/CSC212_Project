@@ -28,6 +28,22 @@ public class Phonebook {
         return contactsList.searchByFirstName(firstName);
     }
 
+	public Contact searchContactByPhoneNumber(String phoneNumber){
+		return contactsList.searchByPhoneNumber(phoneNumber);
+	}
+
+	public Contact searchContactByEmail(String email){
+		return contactsList.searchByEmail(email);
+	}
+
+	public Contact searchContactByAddress(String address){
+		return contactsList.searchByAddress(address);
+	}
+
+	public Contact searchContactByBirthday(String birthday){
+		return contactsList.searchByBirthday(birthday);
+	}
+
 	public List<Event> searchEventsByContactName(String contactName) {
 		List<Event> matchingEvents = new ArrayList<>();
 		for (Event e : events) {

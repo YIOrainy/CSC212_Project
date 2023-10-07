@@ -1,7 +1,7 @@
 package csc212; // This specifies the package to which this class belongs.
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayList; // This imports the resizable array implementation of the List interface.
+import java.util.List; // This imports the interface representing an ordered collection (also known as a sequence).
 
 // This class represents a singly linked list with operations specific to Contact objects.
 public class LinkedListADT {

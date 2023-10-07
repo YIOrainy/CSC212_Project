@@ -1,7 +1,7 @@
 package csc212; // This specifies the package to which this class belongs.
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayList; // This imports the interface representing an ordered collection (also known as a sequence).
+import java.util.List; // This imports the interface representing an ordered collection (also known as a sequence).
 
 public class Phonebook {
     private LinkedListADT contactsList; // Linked list for storing contacts.

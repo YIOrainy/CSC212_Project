@@ -1,6 +1,6 @@
 package csc212; // This specifies the package to which this class belongs.
 
-import java.util.Objects; // This imports the Objects class which provides utility methods for working with objects.
+import java.util.Objects; // This imports the Objects class which provides utility methods for working with objects, such as null-safe comparisions and hash code calculations.
 
 // The Event class represents an event with attributes like title, date and time, location, and associated contact.
 public class Event {

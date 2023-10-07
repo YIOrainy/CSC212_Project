@@ -79,6 +79,15 @@ public class Phonebook {
 		events.add(event);
 	}
 
+    public Event searchEventByContactName(String contactName){
+        for (Event e : events) {
+            if (e.getContact().getName().equals(contactName)) {
+                return e;
+            }
+        }
+        return null;
+    }
+
     public Event searchEventByTitle(String title) {
         for (Event e : events) {
             if (e.getTitle().equals(title)) {

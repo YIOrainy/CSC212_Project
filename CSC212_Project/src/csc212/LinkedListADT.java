@@ -1,20 +1,23 @@
-package csc212;
+package csc212; // This specifies the package to which this class belongs.
 
 import java.util.ArrayList;
 import java.util.List;
 
+// This class represents a singly linked list with operations specific to Contact objects.
 public class LinkedListADT {
-    private Node head;
+    private Node head; // This represents the first node in the linked list.
 
+    // This class represents a node in the linked list.
     private class Node {
-        Contact contact;
-        Node next;
+        Contact contact; // The contact data stored in the node.
+        Node next; // A reference to the next node in the linked list.
 
         public Node(Contact contact) {
             this.contact = contact;
         }
     }
 
+    // This method adds a contact to the linked list in a sorted order (by contact name).
     public void addContact(Contact contact) {
         Node newNode = new Node(contact);
         if (head == null) {
@@ -39,6 +42,7 @@ public class LinkedListADT {
         }
     }
 
+    // This method searches for a contact by name and returns the contact if found, otherwise returns null.
     public Contact searchByName(String name) {
         Node current = head;
         while (current != null) {
@@ -50,6 +54,7 @@ public class LinkedListADT {
         return null;
     }
 
+    // This method searches for contacts by first name and returns a list of matching contacts.
     public List<Contact> searchByFirstName(String firstName) {
         List<Contact> contacts = new ArrayList<>();
         Node current = head;
@@ -63,6 +68,7 @@ public class LinkedListADT {
         return contacts;
     }
 
+    // This method searches for a contact by phoneNumber and returns the contact if found, otherwise returns null.
     public Contact searchByPhoneNumber(String phoneNumber) {
         Node current = head;
         while (current != null) {
@@ -74,6 +80,7 @@ public class LinkedListADT {
         return null;
     }
 
+    // This method searches for a contact by email and returns the contact if found, otherwise returns null.
     public Contact searchByEmail(String email) {
         Node current = head;
         while (current != null) {
@@ -85,6 +92,7 @@ public class LinkedListADT {
         return null;
     }
 
+    // This method searches for a contact by address and returns the contact if found, otherwise returns null.
     public Contact searchByAddress(String address) {
         Node current = head;
         while (current != null) {
@@ -96,6 +104,7 @@ public class LinkedListADT {
         return null;
     }
 
+    // This method searches for a contact by birthday and returns the contact if found, otherwise returns null.
     public Contact searchByBirthday(String birthday) {
         Node current = head;
         while (current != null) {
@@ -107,6 +116,7 @@ public class LinkedListADT {
         return null;
     }
 
+    // This method deletes a contact by name.
     public void deleteContact(String name) {
         if (head == null) return;
 
@@ -128,6 +138,7 @@ public class LinkedListADT {
         }
     }
 
+    // This method retrieves all contacts from the linked list and returns them as a list.
     public List<Contact> getAllContacts() {
         List<Contact> contacts = new ArrayList<>();
         Node current = head;

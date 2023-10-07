@@ -1,17 +1,19 @@
-package csc212;
+package csc212; // This specifies the package to which this class belongs.
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Phonebook {
-    private LinkedListADT contactsList;
-    private List<Event> events;
+    private LinkedListADT contactsList; // Linked list for storing contacts.
+    private List<Event> events; // List for storing events.
 
+    // Constructor initializes the contacts list and events list.
     public Phonebook() {
         this.contactsList = new LinkedListADT();
         this.events = new ArrayList<>();
     }
 
+    // Method to add a contact. It checks if a contact with the same name already exists.
     public void addContact(Contact contact) {
         if (contactsList.searchByName(contact.getName()) == null) {
             contactsList.addContact(contact);
@@ -20,6 +22,7 @@ public class Phonebook {
         }
     }
 
+    // These methods search for contacts using various attributes (Name, FirstName, email, address, birthday).
     public Contact searchContactByName(String name) {
         return contactsList.searchByName(name);
     }
@@ -44,6 +47,7 @@ public class Phonebook {
 		return contactsList.searchByBirthday(birthday);
 	}
 
+    // This method searches for events associated with a given contact name.
 	public List<Event> searchEventsByContactName(String contactName) {
 		List<Event> matchingEvents = new ArrayList<>();
 		for (Event e : events) {
@@ -54,7 +58,7 @@ public class Phonebook {
 		return matchingEvents;
 	}
 	
-
+    // This method searches for events associated with a given title. It also removes events related to this contact.
     public void deleteContact(String name) {
         Contact contact = contactsList.searchByName(name);
         if (contact != null) {
@@ -65,6 +69,7 @@ public class Phonebook {
         }
     }
 
+    // This method schedule an event. It checks for conflicts and whether the associated contact exists.
 	public void scheduleEvent(Event event) {
 		if (searchContactByName(event.getContact().getName()) == null) {
 			System.out.println("Contact does not exist in the phonebook. Event not scheduled.");
@@ -79,6 +84,7 @@ public class Phonebook {
 		events.add(event);
 	}
 
+    // This method searches for events associated with a given contact name.
     public Event searchEventByContactName(String contactName){
         for (Event e : events) {
             if (e.getContact().getName().equals(contactName)) {
@@ -88,6 +94,7 @@ public class Phonebook {
         return null;
     }
 
+    // This method searches for an event associated with a given title.
     public Event searchEventByTitle(String title) {
         for (Event e : events) {
             if (e.getTitle().equals(title)) {
@@ -97,6 +104,7 @@ public class Phonebook {
         return null;
     }
 
+    // This method returns all events
     public List<Event> getAllEvents() {
         return events;
     }

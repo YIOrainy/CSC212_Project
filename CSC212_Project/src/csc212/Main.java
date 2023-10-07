@@ -1,4 +1,4 @@
-package csc212;
+package csc212; // This specifies the package to which this class belongs.
 
 import java.util.List;
 import java.util.Collections;
@@ -7,10 +7,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Phonebook phonebook = new Phonebook();
-        Scanner sc = new Scanner(System.in);
+        Phonebook phonebook = new Phonebook(); // Create a new phonebook instance.
+        Scanner sc = new Scanner(System.in); // Scanner for user input.
 
         while (true) {
+            // Display the main menu.
             System.out.println("Welcome to the Linked Tree Phonebook! Please choose an option:");
             System.out.println("1. Add a contact");
             System.out.println("2. Search for a contact");
@@ -23,12 +24,13 @@ public class Main {
             
             System.out.println("");
             System.out.print("Enter your choice: ");
-            int choice = sc.nextInt();
+            int choice = sc.nextInt(); // Get the user's choice.
             sc.nextLine();  // Consume newline
             System.out.println("");
 
             switch (choice) {
                 case 1:
+                    // Add a contact: User is prompted to enter details for a new contact, which is then added to the phonebook.
                     System.out.print("Enter the contact's name: ");
                     String name = sc.nextLine();
                     System.out.print("Enter the contact's phone number: ");
@@ -46,6 +48,7 @@ public class Main {
                     System.out.println("\nContact added successfully!");
                     break;
                 case 2:
+                    // Search for a contact: User is prompted to enter a search criteria, and then the contact is searched for and displayed.
                     System.out.println("Enter search criteria:");
                     System.out.println("1. Name");
                     System.out.println("2. Phone Number");
@@ -148,12 +151,14 @@ public class Main {
                     }
                     break;
                 case 3:
+                    // Delete a contact: User is prompted to enter the name of the contact to be deleted, and then the contact is deleted.
                     System.out.print("Enter the contact's name: ");
                     name = sc.nextLine();
                     phonebook.deleteContact(name);
                     System.out.println("\nContact deleted successfully!");
                     break;
                 case 4:
+                    // Schedule an event: User is prompted to enter details for a new event, which is then added to the phonebook.
                     System.out.print("Enter event title: ");
                     String title = sc.nextLine();
                     System.out.print("Enter contact name: ");
@@ -172,6 +177,7 @@ public class Main {
                     }
                     break;
                 case 5:
+                    // Print event details: User is prompted to enter a search criteria, and then the event is searched for and displayed.
                     System.out.println("Enter search criteria: ");
                     System.out.println("1. Contact name");
                     System.out.println("2. Event title");
@@ -214,6 +220,7 @@ public class Main {
                     }
                     break;
                 case 6:
+                    // Print contacts by first name: User is prompted to enter a first name, and then all contacts with that first name are displayed.
                     System.out.print("Enter the first name: ");
                     String firstName = sc.nextLine();
                     System.out.println("");
@@ -229,6 +236,7 @@ public class Main {
                     }
                     break;
                 case 7:
+                    // Print all events alphabetically: All events are displayed in alphabetical order by title.
                     List<Event> allEvents = phonebook.getAllEvents();
                     Collections.sort(allEvents, Comparator.comparing(Event::getTitle));
                     for (Event e : allEvents) {
@@ -239,6 +247,7 @@ public class Main {
                     }
                     break;
                 case 8:
+                    // Exit: Exit the program.
                     System.out.println("Goodbye!\n");
                     sc.close();
                     return;

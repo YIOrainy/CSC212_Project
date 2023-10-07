@@ -64,6 +64,7 @@ public class Main {
                             System.out.println("");
                             Contact foundContact = phonebook.searchContactByName(name);
                             if (foundContact != null) {
+                                System.out.println("Contact found!");
                                 System.out.println("Name: " + foundContact.getName());
                                 System.out.println("Phone Number: " + foundContact.getPhoneNumber());
                                 System.out.println("Email Address: " + foundContact.getEmailAddress());
@@ -80,6 +81,7 @@ public class Main {
                             System.out.println("");
                             foundContact = phonebook.searchContactByPhoneNumber(phoneNumber);
                             if (foundContact != null) {
+                                System.out.println("Contact found!");
                                 System.out.println("Name: " + foundContact.getName());
                                 System.out.println("Phone Number: " + foundContact.getPhoneNumber());
                                 System.out.println("Email Address: " + foundContact.getEmailAddress());
@@ -96,6 +98,7 @@ public class Main {
                             System.out.println("");
                             foundContact = phonebook.searchContactByEmail(email);
                             if (foundContact != null) {
+                                System.out.println("Contact found!");
                                 System.out.println("Name: " + foundContact.getName());
                                 System.out.println("Phone Number: " + foundContact.getPhoneNumber());
                                 System.out.println("Email Address: " + foundContact.getEmailAddress());
@@ -112,6 +115,7 @@ public class Main {
                             System.out.println("");
                             foundContact = phonebook.searchContactByAddress(address);
                             if (foundContact != null) {
+                                System.out.println("Contact found!");
                                 System.out.println("Name: " + foundContact.getName());
                                 System.out.println("Phone Number: " + foundContact.getPhoneNumber());
                                 System.out.println("Email Address: " + foundContact.getEmailAddress());
@@ -128,6 +132,7 @@ public class Main {
                             System.out.println("");
                             foundContact = phonebook.searchContactByBirthday(birthday);
                             if (foundContact != null) {
+                                System.out.println("Contact found!");
                                 System.out.println("Name: " + foundContact.getName());
                                 System.out.println("Phone Number: " + foundContact.getPhoneNumber());
                                 System.out.println("Email Address: " + foundContact.getEmailAddress());

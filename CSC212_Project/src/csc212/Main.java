@@ -167,17 +167,45 @@ public class Main {
                     }
                     break;
                 case 5:
-                    System.out.print("Enter the event title: ");
-                    String eventTitle = sc.nextLine();
+                    System.out.println("Enter search criteria: ");
+                    System.out.println("1. Contact name");
+                    System.out.println("2. Event title");
                     System.out.println("");
-                    Event foundEvent = phonebook.searchEventByTitle(eventTitle);
-                    if (foundEvent != null) {
-                        System.out.println("Event title: " + foundEvent.getTitle());
-                        System.out.println("Contact name: " + foundEvent.getContact().getName());
-                        System.out.println("Event date and time: " + foundEvent.getDateAndTime());
-                        System.out.println("Location: " + foundEvent.getLocation());
-                    } else {
-                        System.out.println("\nEvent not found.");
+                    System.out.print("Enter your choice: ");
+                    int searchCriteria = sc.nextInt();
+                    sc.nextLine();  // Consume newline
+                    System.out.println("");
+                    switch(searchCriteria){
+                        case 1:
+                            System.out.print("Enter the contact's name: ");
+                            name = sc.nextLine();
+                            System.out.println("");
+                            Event foundEvent = phonebook.searchEventByContactName(name);
+                            if (foundEvent != null) {
+                                System.out.println("Event title: " + foundEvent.getTitle());
+                                System.out.println("Contact name: " + foundEvent.getContact().getName());
+                                System.out.println("Event date and time: " + foundEvent.getDateAndTime());
+                                System.out.println("Location: " + foundEvent.getLocation());
+                            } else {
+                                System.out.println("\nEvent not found.");
+                            }
+                            break;
+                        case 2:
+                            System.out.print("Enter the event title: ");
+                            title = sc.nextLine();
+                            System.out.println("");
+                            foundEvent = phonebook.searchEventByTitle(title);
+                            if (foundEvent != null) {
+                                System.out.println("Event title: " + foundEvent.getTitle());
+                                System.out.println("Contact name: " + foundEvent.getContact().getName());
+                                System.out.println("Event date and time: " + foundEvent.getDateAndTime());
+                                System.out.println("Location: " + foundEvent.getLocation());
+                            } else {
+                                System.out.println("\nEvent not found.");
+                            }
+                            break;
+                        default:
+                            System.out.println("\nInvalid choice. Please try again.");
                     }
                     break;
                 case 6:

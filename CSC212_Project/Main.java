@@ -1,4 +1,4 @@
-package csc212; // This specifies the package to which this class belongs.
+package CSC212_Project; // This specifies the package to which this class belongs.
 
 import java.util.List; // This imports the interface representing an ordered collection (also known as a sequence).
 import java.util.Collections; // This imports the utility class providing static methods for operations on collections, such as sorting and reversing.

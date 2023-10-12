@@ -1,4 +1,4 @@
-package csc212; // This specifies the package to which this class belongs.
+package CSC212_Project; // This specifies the package to which this class belongs.
 
 import java.util.Objects; // This imports the Objects class which provides utility methods for working with objects, such as null-safe comparisions and hash code calculations.
 

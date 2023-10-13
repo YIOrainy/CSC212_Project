@@ -1,44 +1,56 @@
 package CSC212_Project; // This specifies the package to which this class belongs.
 
+// This specifies the package to which this class belongs.
+
 public class LinkedListADT<T extends Comparable<T>> {
 
+    // Private fields to store the head, current node, and size of the linked list.
     private Node<T> head;
     private Node<T> current;
     public int size;
 
+    // Constructor to initialize the linked list with an empty state.
     public LinkedListADT() {
         size = 0;
         head = current = null;
     }
 
+    // Method to check if the linked list is empty.
     public boolean empty() {
         return head == null;
     }
 
+    // Method to check if the current node is the last node in the linked list.
     public boolean last() {
         return current.next == null;
     }
 
+    // Method to check if the linked list is full (always returns false in this implementation).
     public boolean full() {
         return false;
     }
 
+    // Method to set the current node to the first node in the linked list.
     public void findFirst() {
         current = head;
     }
 
+    // Method to set the current node to the next node in the linked list.
     public void findNext() {
         current = current.next;
     }
 
+    // Method to retrieve the data stored in the current node.
     public T retrieve() {
         return current.data;
     }
 
+    // Method to update the data stored in the current node.
     public void update(T val) {
         current.data = val;
     }
 
+    // Method to insert a new node with data at the end of the linked list.
     public void insertAtEnd(T val) {
         if (empty()) {
             current = head = new Node(val);
@@ -52,6 +64,7 @@ public class LinkedListADT<T extends Comparable<T>> {
         size++;
     }
 
+    // Method to insert a new node with data in sorted order in the linked list.
     public boolean insertSort(T val) {
 
         Node<T> tmp;
@@ -83,6 +96,7 @@ public class LinkedListADT<T extends Comparable<T>> {
         return true;
     }
 
+    // Method to search for a node with a specific value in the linked list.
     public boolean search(T val) {
         if (head == null)
             return false;
@@ -97,6 +111,7 @@ public class LinkedListADT<T extends Comparable<T>> {
         return false;
     }
 
+    // Method to remove a node with a specific value from the linked list.
     public T remove(T val) {
 
         if (search(val) == false)
@@ -121,6 +136,7 @@ public class LinkedListADT<T extends Comparable<T>> {
         return data;
     }
 
+    // Method to print all elements in the linked list.
     public void printAll() {
         Node p = head;
         while (p != null) {

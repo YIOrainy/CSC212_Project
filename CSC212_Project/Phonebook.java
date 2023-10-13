@@ -1,111 +1,406 @@
 package CSC212_Project; // This specifies the package to which this class belongs.
 
-import java.util.ArrayList; // This imports the interface representing an ordered collection (also known as a sequence).
-import java.util.List; // This imports the interface representing an ordered collection (also known as a sequence).
+// Importing Date class to work with date and time functionality
+import java.util.Date;
 
+// Importing Scanner class for reading input data from the user
+import java.util.Scanner;
+
+// This class represents a Phonebook application
 public class Phonebook {
-    private LinkedListADT contactsList; // Linked list for storing contacts.
-    private List<Event> events; // List for storing events.
 
-    // Constructor initializes the contacts list and events list.
-    public Phonebook() {
-        this.contactsList = new LinkedListADT();
-        this.events = new ArrayList<>();
+    // Creating a Scanner object to read input data from the user
+    public static Scanner input = new Scanner(System.in);
+
+    // Creating a linked list to store contacts
+    public static LinkedListADT<Contact> contacts = new LinkedListADT<Contact>();
+
+    // Creating a linked list to store events
+    public static LinkedListADT<Event> events = new LinkedListADT<Event>();
+
+    // This method displays the main menu and returns user's choice
+    public static int menu() {
+        System.out.println("Please choose an option:");
+        System.out.println("1. Add a contact");
+        System.out.println("2. Search for a contact");
+        System.out.println("3. Delete a contact");
+        System.out.println("4. Schedule an event");
+        System.out.println("5. Print event details");
+        System.out.println("6. Print contacts by first name");
+        System.out.println("7. Print all events alphabetically");
+        System.out.println("8. Exit");
+        System.out.print("\nEnter your choice: ");
+        int choice = input.nextInt();
+        input.nextLine(); // Consume newline
+        return choice;
     }
 
-    // Method to add a contact. It checks if a contact with the same name already exists.
-    public void addContact(Contact contact) {
-        if (contactsList.searchByName(contact.getName()) == null) {
-            contactsList.addContact(contact);
-        } else {
-            System.out.println("Contact already exists.");
+    // This method displays the submenu for searching contacts and returns user's choice
+    public static int subMenu2() {
+        System.out.println("Enter search criteria:");
+        System.out.println("1. Name");
+        System.out.println("2. Phone Number");
+        System.out.println("3. Email Address");
+        System.out.println("4. Address");
+        System.out.println("5. Birthday");
+        System.out.print("\nEnter your choice: ");
+        int choice = input.nextInt();
+        return choice;
+    }
+
+    // This method displays the submenu for searching events and returns user's choice
+    public static int subMenu5() {
+        System.out.println("Enter search criteria:");
+        System.out.println("1. contact name");
+        System.out.println("2. Event tittle");
+        System.out.print("\nEnter your choice: ");
+        int choice = input.nextInt();
+        return choice;
+    }
+
+    // 1. Add a contact
+    // This method allows the user to add a new Contact to the phonebook
+    public static void AddContact() {
+        Contact c = new Contact();
+        System.out.print("Enter the contact\'s name: ");
+        c.name = input.nextLine();
+        // c.name = input.nextLine();
+
+        if (!contacts.empty() && contacts.search(c)) {
+            System.out.println("Contact found!");
+            return;
         }
-    }
+        System.out.print("Enter the contact's phone number: ");
+        c.phoneNumber = input.nextLine();
 
-    // These methods search for contacts using various attributes (Name, FirstName, email, address, birthday).
-    public Contact searchContactByName(String name) {
-        return contactsList.searchByName(name);
-    }
-
-    public List<Contact> searchContactsByFirstName(String firstName) {
-        return contactsList.searchByFirstName(firstName);
-    }
-
-	public Contact searchContactByPhoneNumber(String phoneNumber){
-		return contactsList.searchByPhoneNumber(phoneNumber);
-	}
-
-	public Contact searchContactByEmail(String email){
-		return contactsList.searchByEmail(email);
-	}
-
-	public Contact searchContactByAddress(String address){
-		return contactsList.searchByAddress(address);
-	}
-
-	public Contact searchContactByBirthday(String birthday){
-		return contactsList.searchByBirthday(birthday);
-	}
-
-    // This method searches for events associated with a given contact name.
-	public List<Event> searchEventsByContactName(String contactName) {
-		List<Event> matchingEvents = new ArrayList<>();
-		for (Event e : events) {
-			if (e.getContact().getName().equals(contactName)) {
-				matchingEvents.add(e);
-			}
-		}
-		return matchingEvents;
-	}
-	
-    // This method searches for events associated with a given title. It also removes events related to this contact.
-    public void deleteContact(String name) {
-        Contact contact = contactsList.searchByName(name);
-        if (contact != null) {
-            contactsList.deleteContact(name);
-            events.removeIf(e -> e.getContact().equals(contact));  // Remove events related to this contact
-        } else {
-            System.out.println("Contact not found.");
-        }
-    }
-
-    // This method schedule an event. It checks for conflicts and whether the associated contact exists.
-	public void scheduleEvent(Event event) {
-		if (searchContactByName(event.getContact().getName()) == null) {
-			System.out.println("Contact does not exist in the phonebook. Event not scheduled.");
-			return;
-		}
-		for (Event e : events) {
-			if (e.getContact().equals(event.getContact()) && e.getDateAndTime().equals(event.getDateAndTime())) {
-				System.out.println("Event conflict detected. Event not scheduled.");
-				return;
-			}
-		}
-		events.add(event);
-	}
-
-    // This method searches for events associated with a given contact name.
-    public Event searchEventByContactName(String contactName){
-        for (Event e : events) {
-            if (e.getContact().getName().equals(contactName)) {
-                return e;
+        if (!contacts.empty()) {
+            contacts.findFirst();
+            for (int i = 0; i < contacts.size; i++) {
+                if (contacts.retrieve().phoneNumber.compareTo(c.phoneNumber) == 0) {
+                    System.out.println("Contact found!");
+                    return;
+                }
+                contacts.findNext();
             }
         }
-        return null;
+        System.out.print("Enter the contact's email address: ");
+        c.emailAddress = input.nextLine();
+
+        System.out.print("Enter the contact's address: ");
+        c.address = input.nextLine();
+
+        System.out.print("Enter the contact's birthday: ");
+        c.birthday = new Date(input.nextLine());
+
+        System.out.print("Enter any notes for the contact: ");
+        c.notes = input.nextLine();
+
+        if (contacts.insertSort(c))
+            System.out.println("\nContact added successfully!");
+        
+        // testing
+        System.out.println(contacts.retrieve());
+
     }
 
-    // This method searches for an event associated with a given title.
-    public Event searchEventByTitle(String title) {
-        for (Event e : events) {
-            if (e.getTitle().equals(title)) {
-                return e;
+    // 2. Search for a contact
+    // This method allows the user to search for a contact based on various criteria
+    public static void SearchContact() {
+        int choice = subMenu2();
+        if (contacts.empty())
+            System.out.println("Contact not found!");
+        else {
+            contacts.findFirst();
+            switch (choice) {
+                case 1: {
+                    System.out.print("Enter the contact\'s name: ");
+                    String name = input.nextLine();
+
+                    int nameSize = name.length(); 
+
+                    for (int i = 0; i < contacts.size; i++) {
+                        if (contacts.retrieve().name.substring(0, nameSize).compareTo(name) == 0) {
+                            System.out.println("Contact found!");
+                            System.out.println(contacts.retrieve());
+                            break;
+                        }
+                        contacts.findNext();
+                    }
+                }
+                    break;
+
+                case 2: {
+                    System.out.print("Enter the contact's phone number:");
+                    String phoneNumber = input.nextLine();
+
+                    for (int i = 0; i < contacts.size; i++) {
+                        if (contacts.retrieve().phoneNumber.compareTo(phoneNumber) == 0) {
+                            System.out.println("Contact found!");
+                            System.out.println(contacts.retrieve());
+                            break;
+                        }
+                        contacts.findNext();
+                    }
+                }
+                    break;
+
+                case 3: {
+                    System.out.print("Enter the contact's email address: ");
+                    String emailAddress = input.nextLine();
+
+                    for (int i = 0; i < contacts.size; i++) {
+                        if (contacts.retrieve().emailAddress.compareTo(emailAddress) == 0) {
+                            System.out.println("Contact found!");
+                            System.out.println(contacts.retrieve());
+                        }
+                        contacts.findNext();
+                    }
+                }
+                    break;
+
+                case 4: {
+                    System.out.print("Enter the contact's address: ");
+                    String address = input.nextLine();
+
+                    for (int i = 0; i < contacts.size; i++) {
+                        if (contacts.retrieve().address.compareTo(address) == 0) {
+                            System.out.println("Contact found!");
+                            System.out.println(contacts.retrieve());
+                        }
+                        contacts.findNext();
+                    }
+                }
+                    break;
+
+                case 5: {
+                    System.out.print("Enter the contact's Birthday: ");
+                    Date birthday = new Date(input.next());
+
+                    for (int i = 0; i < contacts.size; i++) {
+                        if (contacts.retrieve().birthday.compareTo(birthday) == 0) {
+                            System.out.println("Contact found!");
+                            System.out.println(contacts.retrieve());
+                        }
+                        contacts.findNext();
+                    }
+                }
             }
         }
-        return null;
     }
 
-    // This method returns all events
-    public List<Event> getAllEvents() {
-        return events;
+    // 3. Delete a contact
+    // This method allows the user to delete a contact from the phonebook
+    public static void DeleteContact() {
+        Contact c = new Contact();
+
+        System.out.print("Enter the contact\'s name: ");
+        c.name = input.nextLine();
+
+        if (contacts.empty())
+            System.out.println("Contact not found!");
+        else {
+            c = contacts.remove(c);
+            if (c == null)
+                System.out.println("Contact not found!");
+            else {
+                if (!c.events.empty()) {
+                    c.events.findFirst();
+                    for (int i = 0; i < c.events.size; i++) {
+                        Event e = c.events.retrieve();
+                        if (events.search(e)) {
+                            Event Update_Event = events.retrieve();
+                            Update_Event.removeContact(c.name);
+                            if (Update_Event.contacts_names.empty()) {
+                                events.remove(e);
+                                System.out.println("Delete event, No cantact particapate");
+                            } else
+                                events.update(Update_Event);
+
+                        }
+                        c.events.findNext();
+                    }
+                }
+                System.out.println("Contact Deleted Successfully !");
+                System.out.println(c);
+            }
+        }
     }
+
+    // 4. Schedule an event
+    // This method allows the user to schedule an event and associate it with a contact
+    public static void ScheduleEvent() {
+        Contact c = new Contact();
+        Event e = new Event();
+
+        boolean event_Updated = false;
+        boolean Added_Event_To_Contact = false;
+
+        System.out.print("Enter event title: ");
+        e.title = input.nextLine();
+
+        System.out.print("Enter contact name: ");
+        c.name = input.nextLine();
+
+        if (!contacts.empty() && contacts.search(c) == true) {
+            System.out.print("Enter event date and time (MM/DD/YYYY HH:MM): ");
+            e.date = new Date(input.next());
+
+            System.out.print("Enter event location: ");
+            e.location = input.nextLine();
+
+            c = contacts.retrieve();
+            Added_Event_To_Contact = c.addEvent(e);
+            if (Added_Event_To_Contact) {
+                // event added to contact
+                contacts.update(c);
+                if (!events.empty() && events.search(e)) {
+                    Event eventFound = events.retrieve();
+                    if ((eventFound.date.compareTo(e.date) == 0)
+                            && (eventFound.time.compareTo(e.time) == 0)
+                            && (eventFound.location.compareTo(e.location) == 0)) {
+                        eventFound.contacts_names.insertSort(c.name);
+                        events.update(eventFound);
+                        event_Updated = true;
+                    }
+                }
+                if (!event_Updated) {
+
+                    e.contacts_names.insertSort(c.name);
+                    events.insertSort(e);
+                }
+                System.out.println("Event scheduled successfully!   ");
+            } else
+                System.out.println("Contact has conflict Event !  ");
+        } else
+            System.out.println("Cantcat not found !");
+
+    }
+
+    // 5. Print event details
+    // This method allows the user to print event details either by contact name or event title
+    public static void PrintEvent() {
+        int choice = subMenu5();
+        switch (choice) {
+            case 1: {
+                Contact c = new Contact();
+                System.out.print("Enter the contact name :  ");
+                c.name = input.nextLine();
+
+                if (!contacts.empty()) {
+                    if (contacts.search(c) == true) {
+                        System.out.println("Contact found !");
+                        c = contacts.retrieve();
+
+                        c.events.findFirst();
+
+                        for (int i = 0; i < c.events.size; i++) {
+                            Event e = c.events.retrieve();
+                            if (!events.empty() && events.search(e))
+                                System.out.println(events.retrieve());
+                            c.events.findNext();
+                        }
+                        if (c.events.empty())
+                            System.out.println("No events found for this contact !");
+                    } else
+                        System.out.println("Contact not found !");
+                } else
+                    System.out.println("Contact not found !");
+            }
+                break;
+
+            case 2: {
+                Event e = new Event();
+                System.out.print("Enter the event title:  ");
+                e.title = input.nextLine();
+
+                if (!events.empty() && events.search(e)) {
+                    System.out.println("Event found!");
+                    System.out.println(events.retrieve());
+                } else
+                    System.out.println("Event not found !");
+            }
+                break;
+        }
+    }
+
+    // 6. Print contacts by first name
+    // This method allows the user to print contacts that have a specific first name
+    public static void PrintContactsFirstName() {
+
+        System.out.print("Enter the first name:");
+        String fname = input.nextLine();
+
+        if (contacts.empty())
+            System.out.println("No Contacts found !");
+
+        contacts.findFirst();
+        for (int i = 0; i < contacts.size; i++) {
+            String name = contacts.retrieve().name;
+            String[] All = name.split(" ");
+
+            if (All[i].compareToIgnoreCase(fname) == 0)
+                System.out.println(contacts.retrieve() + "\n");
+            contacts.findNext();
+        }
+    }
+
+    // 7. Print all events alphabetically // O(n)
+    // This method allows the user to print all events in the phonebook in alphabetical order
+    public static void PrintAllEvents() {
+        if (!events.empty()) {
+            events.findFirst();
+            for (int i = 0; i < events.size; i++) {
+                System.out.println((i + 1) + ". Event : " + events.retrieve().title);
+                events.findNext();
+            }
+        } else
+            System.out.println("No events found !");
+    }
+
+    // Main method to run the Phonebook application
+    public static void main(String[] args) {
+
+        System.out.println("Welcome to the Linked List Phonebook!");
+        int choice;
+        do {
+            choice = menu();
+            switch (choice) {
+                case 1:
+                    AddContact();
+                    break;
+
+                case 2:
+                    SearchContact();
+                    break;
+
+                case 3:
+                    DeleteContact();
+                    break;
+
+                case 4:
+                    ScheduleEvent();
+                    break;
+
+                case 5:
+                    PrintEvent();
+                    break;
+
+                case 6:
+                    PrintContactsFirstName();
+                    break;
+
+                case 7:
+                    PrintAllEvents();
+                    break;
+
+                case 8:
+                    System.out.println("Goodbye!");
+                    break;
+                default:
+                    System.out.println("Bad choice! Try again");
+            }
+            System.out.println("\n");
+        } while (choice != 8); // Exit when user chooses option 8
+    }
+
 }

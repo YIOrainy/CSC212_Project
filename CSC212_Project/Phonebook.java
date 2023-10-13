@@ -97,9 +97,6 @@ public class Phonebook {
 
         if (contacts.insertSort(c))
             System.out.println("\nContact added successfully!");
-        
-        // testing
-        System.out.println(contacts.retrieve());
 
     }
 

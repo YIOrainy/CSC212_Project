@@ -1,6 +1,6 @@
 package CSC212_Project; // This specifies the package to which this class belongs.
 
-import java.util.Date;
+import java.util.Date; // Importing the necessary Date class for handling dates.
 
 // The Event class represents an event with attributes like title, date and time, location, and associated contact.
 public class Event implements Comparable<Event> {
@@ -10,6 +10,7 @@ public class Event implements Comparable<Event> {
     String location;
     LinkedListADT <String> contacts_names;
 
+    // Default constructor to initialize the event with empty values.
     public Event() {
         this.title = "";
         this.date = null;
@@ -17,7 +18,8 @@ public class Event implements Comparable<Event> {
         this.location = "";
         this.contacts_names = new LinkedListADT<String> ();
     }
-    
+
+    // Constructor to initialize the event with provided values and an initial contact.
     public Event(String title, String date, String time, String location, String contact) {
         this.title = title;
         this.date = new Date(date);
@@ -27,11 +29,13 @@ public class Event implements Comparable<Event> {
         contacts_names.insertSort(contact);
     }
 
+    // Method to add a contact to the list of contacts associated with this event.
     public boolean addContact (String contact)
     {
         return contacts_names.insertSort(contact);
     }
-    
+
+    // Method to remove a contact from the list of contacts associated with this event.
     public boolean removeContact(String contact)
     {
             String name = contacts_names.remove(contact);
@@ -40,6 +44,7 @@ public class Event implements Comparable<Event> {
             return false;
     }
 
+    // Override of the toString method to provide a string representation of the Event object.
     @Override
     public String toString() {
         String str = "\nEvent title: " + title +
@@ -56,6 +61,7 @@ public class Event implements Comparable<Event> {
           return str;
     }
 
+    // Implementation of the compareTo method from the Comparable interface to compare events based on their titles.
     @Override
     public int compareTo(Event obj) {
         try {

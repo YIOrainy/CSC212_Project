@@ -1,6 +1,6 @@
 package CSC212_Project; // This specifies the package to which this class belongs.
 
-import java.util.Date;
+import java.util.Date; // Importing the necessary Date class for handling dates.
 
 // The Contact class implements the Comparable interface, meaning it can be compared to other Contacts.
 public class Contact implements Comparable<Contact> {
@@ -37,6 +37,7 @@ public class Contact implements Comparable<Contact> {
         events = new LinkedListADT<Event>();
     }
 
+    // Override of the toString method to provide a string representation of the Contact object.
     @Override
     public String toString() {
         return "\nName: " + name +
@@ -47,6 +48,7 @@ public class Contact implements Comparable<Contact> {
                 "\nNotes: " + notes + "\n";
     }
 
+    // Method to add an event to the list of events associated with this contact.
     public boolean addEvent(Event e) {
         if (!events.empty()) {
             events.findFirst();
@@ -60,6 +62,7 @@ public class Contact implements Comparable<Contact> {
         return true;
     }
 
+    // Method to remove an event with a specific title from the list of events.
     public boolean removeEvent(String eTitle) {
         if (events.empty())
             return false;
@@ -72,6 +75,7 @@ public class Contact implements Comparable<Contact> {
         return false;
     }
 
+    // Implementation of the compareTo method from the Comparable interface to compare contacts based on their names.
     @Override
     public int compareTo(Contact o) {
         try {

@@ -6,13 +6,13 @@ import java.util.Date; // Importing the necessary Date class for handling dates.
 public class Contact implements Comparable<Contact> {
 
     // These are the private fields that store the properties of a contact.
-    private String name;
-    private String phoneNumber;
-    private String emailAddress;
-    private String address;
-    private Date birthday;
-    private String notes;
-    private LinkedListADT<Event> events;
+    String name;
+    String phoneNumber;
+    String emailAddress;
+    String address;
+    Date birthday;
+    String notes;
+    LinkedListADT<Event> events;
 
     // Constructor to initialize the contact with an empty state.
     public Contact() {

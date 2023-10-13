@@ -45,6 +45,7 @@ public class Phonebook {
         System.out.println("5. Birthday");
         System.out.print("\nEnter your choice: ");
         int choice = input.nextInt();
+        input.nextLine(); // Consume newline
         return choice;
     }
 
@@ -55,6 +56,7 @@ public class Phonebook {
         System.out.println("2. Event tittle");
         System.out.print("\nEnter your choice: ");
         int choice = input.nextInt();
+        input.nextLine(); // Consume newline
         return choice;
     }
 
@@ -64,7 +66,6 @@ public class Phonebook {
         Contact c = new Contact();
         System.out.print("Enter the contact\'s name: ");
         c.name = input.nextLine();
-        // c.name = input.nextLine();
 
         if (!contacts.empty() && contacts.search(c)) {
             System.out.println("Contact found!");
@@ -113,10 +114,8 @@ public class Phonebook {
                     System.out.print("Enter the contact\'s name: ");
                     String name = input.nextLine();
 
-                    int nameSize = name.length(); 
-
                     for (int i = 0; i < contacts.size; i++) {
-                        if (contacts.retrieve().name.substring(0, nameSize).compareTo(name) == 0) {
+                        if (contacts.retrieve().name.compareTo(name) == 0) {
                             System.out.println("Contact found!");
                             System.out.println(contacts.retrieve());
                             break;

@@ -111,6 +111,7 @@ public class Phonebook {
             contacts.findFirst();
             switch (choice) {
                 case 1: {
+                    // Search for contact by name
                     System.out.print("Enter the contact\'s name: ");
                     String name = input.nextLine();
 
@@ -126,6 +127,7 @@ public class Phonebook {
                     break;
 
                 case 2: {
+                    // Search for contact by phone number
                     System.out.print("Enter the contact's phone number:");
                     String phoneNumber = input.nextLine();
 
@@ -141,6 +143,7 @@ public class Phonebook {
                     break;
 
                 case 3: {
+                    // Search for contact by email address
                     System.out.print("Enter the contact's email address: ");
                     String emailAddress = input.nextLine();
 
@@ -155,6 +158,7 @@ public class Phonebook {
                     break;
 
                 case 4: {
+                    // Search for contact by address
                     System.out.print("Enter the contact's address: ");
                     String address = input.nextLine();
 
@@ -169,6 +173,7 @@ public class Phonebook {
                     break;
 
                 case 5: {
+                    // Search for contact by birthday
                     System.out.print("Enter the contact's Birthday: ");
                     Date birthday = new Date(input.next());
 
@@ -280,6 +285,7 @@ public class Phonebook {
         int choice = subMenu5();
         switch (choice) {
             case 1: {
+                // Print event details by contact name
                 Contact c = new Contact();
                 System.out.print("Enter the contact name :  ");
                 c.name = input.nextLine();
@@ -307,6 +313,7 @@ public class Phonebook {
                 break;
 
             case 2: {
+                // Print event details by event title
                 Event e = new Event();
                 System.out.print("Enter the event title:  ");
                 e.title = input.nextLine();

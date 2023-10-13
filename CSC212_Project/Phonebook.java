@@ -240,6 +240,8 @@ public class Phonebook {
         if (!contacts.empty() && contacts.search(c) == true) {
             System.out.print("Enter event date and time (MM/DD/YYYY HH:MM): ");
             e.date = new Date(input.next());
+            e.time = input.next();
+            input.nextLine(); // Consume newline
 
             System.out.print("Enter event location: ");
             e.location = input.nextLine();

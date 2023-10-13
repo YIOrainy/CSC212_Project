@@ -1,55 +1,71 @@
 package CSC212_Project; // This specifies the package to which this class belongs.
 
-import java.util.Objects; // This imports the Objects class which provides utility methods for working with objects, such as null-safe comparisions and hash code calculations.
+import java.util.Date;
 
 // The Event class represents an event with attributes like title, date and time, location, and associated contact.
-public class Event {
+public class Event implements Comparable<Event> {
+    String title;
+    Date date; // Format: 2023/12/31
+    String time;
+    String location;
+    LinkedListADT <String> contacts_names;
 
-    // These are the private fields that store the properties of an event.
-    private String title;
-    private String dateAndTime;
-    private String location;
-    private Contact contact; // This field is a reference to a Contact object associated with the event.
-
-    // This is the constructor that initializes the event properties.
-    public Event(String title, String dateAndTime, String location, Contact contact) {
+    public Event() {
+        this.title = "";
+        this.date = null;
+        this.time = "";
+        this.location = "";
+        this.contacts_names = new LinkedListADT<String> ();
+    }
+    
+    public Event(String title, String date, String time, String location, String contact) {
         this.title = title;
-        this.dateAndTime = dateAndTime;
+        this.date = new Date(date);
+        this.time = time;
         this.location = location;
-        this.contact = contact;
+        this.contacts_names = new LinkedListADT<String> ();
+        contacts_names.insertSort(contact);
     }
 
-    // These are the getter methods that provide access to the event properties.
-    public String getTitle() {
-        return title;
+    public boolean addContact (String contact)
+    {
+        return contacts_names.insertSort(contact);
+    }
+    
+    public boolean removeContact(String contact)
+    {
+            String name = contacts_names.remove(contact);
+            if ( name != null)
+                return true; 
+            return false;
     }
 
-    public String getDateAndTime() {
-        return dateAndTime;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    // This method returns the Contact object associated with the event.
-    public Contact getContact() {
-        return contact;
-    }
-
-    // This method checks if two events are equal based on their title.
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true; // Checks if two objects are the same.
-        if (obj == null || getClass() != obj.getClass()) return false; // Checks if obj is an Event.
-        Event event = (Event) obj; // Casts obj to an Event.
-        return title.equals(event.title); // Compares the titles of the two events.
+    public String toString() {
+        String str = "\nEvent title: " + title +
+                    "\nEvent date and time (MM/DD/YYYY HH:MM): " + date + time +
+                   "\nEvent location: " + location + "\n" +
+                    "\nContacts names:   " ;
+                
+        contacts_names.findFirst();
+         for ( int i = 0 ; i < contacts_names.size ; i++ )
+         {
+             str += contacts_names.retrieve() + "\t";
+             contacts_names.findNext();
+         }
+          return str;
     }
 
-    // This method returns a hash code for the event based on its title.
     @Override
-    public int hashCode() {
-        return Objects.hash(title);
+    public int compareTo(Event obj) {
+        try {
+            return (this.title.compareToIgnoreCase(obj.title));
+        }
+        catch (Exception e)
+        {
+             //To change body of generated methods, choose Tools | Templates.
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
     }
+
 }
-

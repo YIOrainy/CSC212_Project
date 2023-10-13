@@ -104,25 +104,31 @@ public class Phonebook {
     // 2. Search for a contact
     // This method allows the user to search for a contact based on various criteria
     public static void SearchContact() {
-        int choice = subMenu2();
+    	boolean found = false;  //this boolean works like a switch. on(true) --> Contact found/ off(false) --> Contact not found.
+    	int choice = subMenu2();
         if (contacts.empty())
-            System.out.println("Contact not found!");
+        	System.out.println("Contact not found!");
         else {
             contacts.findFirst();
             switch (choice) {
                 case 1: {
+                	
                     // Search for contact by name
                     System.out.print("Enter the contact\'s name: ");
                     String name = input.nextLine();
-
+                    
                     for (int i = 0; i < contacts.size; i++) {
                         if (contacts.retrieve().name.compareTo(name) == 0) {
                             System.out.println("Contact found!");
                             System.out.println(contacts.retrieve());
+                            found = true;
                             break;
                         }
                         contacts.findNext();
                     }
+                    if(!found)
+                    	System.out.println("Contact Not found!");
+                  
                 }
                     break;
 
@@ -135,10 +141,13 @@ public class Phonebook {
                         if (contacts.retrieve().phoneNumber.compareTo(phoneNumber) == 0) {
                             System.out.println("Contact found!");
                             System.out.println(contacts.retrieve());
+                            found = true;
                             break;
                         }
                         contacts.findNext();
                     }
+                    if(!found)
+                    	System.out.println("Contact Not found!");
                 }
                     break;
 
@@ -151,9 +160,13 @@ public class Phonebook {
                         if (contacts.retrieve().emailAddress.compareTo(emailAddress) == 0) {
                             System.out.println("Contact found!");
                             System.out.println(contacts.retrieve());
+                            found = true;
                         }
                         contacts.findNext();
                     }
+                    if(!found)
+                    	System.out.println("Contact not found!");
+                    
                 }
                     break;
 
@@ -166,9 +179,12 @@ public class Phonebook {
                         if (contacts.retrieve().address.compareTo(address) == 0) {
                             System.out.println("Contact found!");
                             System.out.println(contacts.retrieve());
+                            found = true;
                         }
                         contacts.findNext();
                     }
+                    if(!found)
+                    	System.out.println("Contact not found!");
                 }
                     break;
 
@@ -181,9 +197,12 @@ public class Phonebook {
                         if (contacts.retrieve().birthday.compareTo(birthday) == 0) {
                             System.out.println("Contact found!");
                             System.out.println(contacts.retrieve());
+                            found = true;
                         }
                         contacts.findNext();
                     }
+                    if(!found)
+                    	System.out.println("Contact not found!");
                 }
             }
         }

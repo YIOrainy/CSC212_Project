@@ -1,11 +1,9 @@
 package CSC212_Project; // This specifies the package to which this class belongs.
 
-import java.util.Date; // Importing the necessary Date class for handling dates.
-
 // The Event class represents an event with attributes like title, date and time, location, and associated contact.
 public class Event implements Comparable<Event> {
     String title;
-    Date date; // Format: 2023/12/31
+    String date; // Format: 2023/12/31
     String time;
     String location;
     LinkedListADT <String> contacts_names;
@@ -13,7 +11,7 @@ public class Event implements Comparable<Event> {
     // Default constructor to initialize the event with empty values.
     public Event() {
         this.title = "";
-        this.date = null;
+        this.date = "";
         this.time = "";
         this.location = "";
         this.contacts_names = new LinkedListADT<String> ();
@@ -22,7 +20,7 @@ public class Event implements Comparable<Event> {
     // Constructor to initialize the event with provided values and an initial contact.
     public Event(String title, String date, String time, String location, String contact) {
         this.title = title;
-        this.date = new Date(date);
+        this.date = date;
         this.time = time;
         this.location = location;
         this.contacts_names = new LinkedListADT<String> ();
@@ -48,7 +46,7 @@ public class Event implements Comparable<Event> {
     @Override
     public String toString() {
         String str = "\nEvent title: " + title +
-                    "\nEvent date and time (MM/DD/YYYY HH:MM): " + date + time +
+                    "\nEvent date and time (MM/DD/YYYY HH:MM): " + date + " " + time +
                    "\nEvent location: " + location + "\n" +
                     "\nContacts names:   " ;
                 

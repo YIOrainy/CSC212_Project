@@ -1,8 +1,5 @@
 package CSC212_Project; // This specifies the package to which this class belongs.
 
-// Importing Date class to work with date and time functionality
-import java.util.Date;
-
 // Importing Scanner class for reading input data from the user
 import java.util.Scanner;
 
@@ -91,7 +88,7 @@ public class Phonebook {
         c.address = input.nextLine();
 
         System.out.print("Enter the contact's birthday: ");
-        c.birthday = new Date(input.nextLine());
+        c.birthday = input.nextLine();
 
         System.out.print("Enter any notes for the contact: ");
         c.notes = input.nextLine();
@@ -191,7 +188,7 @@ public class Phonebook {
                 case 5: {
                     // Search for contact by birthday
                     System.out.print("Enter the contact's Birthday: ");
-                    Date birthday = new Date(input.next());
+                    String birthday = input.next();
 
                     for (int i = 0; i < contacts.size; i++) {
                         if (contacts.retrieve().birthday.compareTo(birthday) == 0) {
@@ -263,7 +260,7 @@ public class Phonebook {
 
         if (!contacts.empty() && contacts.search(c) == true) {
             System.out.print("Enter event date and time (MM/DD/YYYY HH:MM): ");
-            e.date = new Date(input.next());
+            e.date = input.next();
             e.time = input.next();
             input.nextLine(); // Consume newline
 

@@ -1,7 +1,5 @@
 package CSC212_Project; // This specifies the package to which this class belongs.
 
-import java.util.Date; // Importing the necessary Date class for handling dates.
-
 // The Contact class implements the Comparable interface, meaning it can be compared to other Contacts.
 public class Contact implements Comparable<Contact> {
 
@@ -10,7 +8,7 @@ public class Contact implements Comparable<Contact> {
     String phoneNumber;
     String emailAddress;
     String address;
-    Date birthday;
+    String birthday;
     String notes;
     LinkedListADT<Event> events;
 
@@ -20,7 +18,7 @@ public class Contact implements Comparable<Contact> {
         this.phoneNumber = "";
         this.emailAddress = "";
         this.address = "";
-        this.birthday = null;
+        this.birthday = "";
         this.notes = "";
         events = new LinkedListADT<Event>();
     }
@@ -32,7 +30,7 @@ public class Contact implements Comparable<Contact> {
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.address = address;
-        this.birthday = new Date(birthday);
+        this.birthday = birthday;
         this.notes = notes;
         events = new LinkedListADT<Event>();
     }

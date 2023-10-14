@@ -347,7 +347,7 @@ public class Phonebook {
     // 6. Print contacts by first name
     // This method allows the user to print contacts that have a specific first name
     public static void PrintContactsFirstName() {
-
+        boolean found = false;
         System.out.print("Enter the first name:");
         String fname = input.nextLine();
 
@@ -359,10 +359,14 @@ public class Phonebook {
             String name = contacts.retrieve().name;
             String[] All = name.split(" ");
 
-            if (All[0].compareToIgnoreCase(fname) == 0)
+            if (All[0].compareToIgnoreCase(fname) == 0){
                 System.out.println(contacts.retrieve() + "\n");
+                found = true;
+            }
             contacts.findNext();
         }
+        if(!found)
+            System.out.println("No Contacts found !");
     }
 
     // 7. Print all events alphabetically // O(n)

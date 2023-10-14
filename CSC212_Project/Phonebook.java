@@ -359,7 +359,7 @@ public class Phonebook {
             String name = contacts.retrieve().name;
             String[] All = name.split(" ");
 
-            if (All[i].compareToIgnoreCase(fname) == 0)
+            if (All[0].compareToIgnoreCase(fname) == 0)
                 System.out.println(contacts.retrieve() + "\n");
             contacts.findNext();
         }

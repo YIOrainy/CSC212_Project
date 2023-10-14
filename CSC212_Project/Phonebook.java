@@ -351,8 +351,10 @@ public class Phonebook {
         System.out.print("Enter the first name:");
         String fname = input.nextLine();
 
-        if (contacts.empty())
+        if (contacts.empty()){
             System.out.println("No Contacts found !");
+            return;
+        }
 
         contacts.findFirst();
         for (int i = 0; i < contacts.size; i++) {

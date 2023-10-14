@@ -48,17 +48,9 @@ public class Contact implements Comparable<Contact> {
 
     // Method to add an event to the list of events associated with this contact.
     public boolean addEvent(Event e) {
-        if (!events.empty()) {
-            events.findFirst();
-            for (int i = 0; i < events.size; i++) {
-                if ((events.retrieve().date.compareTo(e.date) == 0)
-                        && (events.retrieve().time.compareTo(e.time) == 0))
-                    return false;
-            }
-        }
         events.insertSort(e);
         return true;
-    }
+    }    
 
     // Method to remove an event with a specific title from the list of events.
     public boolean removeEvent(String eTitle) {

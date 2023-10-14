@@ -248,53 +248,56 @@ public class Phonebook {
     public static void ScheduleEvent() {
         Contact c = new Contact();
         Event e = new Event();
-
-        boolean event_Updated = false;
-        boolean Added_Event_To_Contact = false;
-
+    
         System.out.print("Enter event title: ");
         e.title = input.nextLine();
-
+    
         System.out.print("Enter contact name: ");
         c.name = input.nextLine();
-
-        if (!contacts.empty() && contacts.search(c) == true) {
-            System.out.print("Enter event date and time (MM/DD/YYYY HH:MM): ");
-            e.date = input.next();
-            e.time = input.next();
-            input.nextLine(); // Consume newline
-
-            System.out.print("Enter event location: ");
-            e.location = input.nextLine();
-
-            c = contacts.retrieve();
-            Added_Event_To_Contact = c.addEvent(e);
-            if (Added_Event_To_Contact) {
-                // event added to contact
+    
+        System.out.print("Enter event date and time (MM/DD/YYYY HH:MM): ");
+        e.date = input.next();
+        e.time = input.next();
+        input.nextLine(); // Consume newline
+    
+        System.out.print("Enter event location: ");
+        e.location = input.nextLine();
+    
+        boolean conflictFound = false;
+        if (!events.empty()) {
+            events.findFirst();
+            for (int i = 0; i < events.size; i++) {
+                if ((events.retrieve().date.compareTo(e.date) == 0)
+                        && (events.retrieve().time.compareTo(e.time) == 0)) {
+                    conflictFound = true;
+                    break;
+                }
+                events.findNext();
+            }
+        }
+    
+        if (conflictFound) {
+            System.out.println("\nThere's a scheduling conflict. The event could not be added.");
+        } else {
+            if (!contacts.empty() && contacts.search(c) == true) {
+                c = contacts.retrieve();
+                c.addEvent(e); // Directly adding the event as we've already checked for conflicts
                 contacts.update(c);
+                
                 if (!events.empty() && events.search(e)) {
                     Event eventFound = events.retrieve();
-                    if ((eventFound.date.compareTo(e.date) == 0)
-                            && (eventFound.time.compareTo(e.time) == 0)
-                            && (eventFound.location.compareTo(e.location) == 0)) {
-                        eventFound.contacts_names.insertSort(c.name);
-                        events.update(eventFound);
-                        event_Updated = true;
-                    }
-                }
-                if (!event_Updated) {
-
-                    e.contacts_names.insertSort(c.name);
+                    eventFound.contacts_names.insertSort(c.name);
+                    events.update(eventFound);
+                } else {
                     events.insertSort(e);
+                    System.out.println("\nEvent Added Successfully !");
                 }
-                System.out.println("Event scheduled successfully!   ");
-            } else
-                System.out.println("Contact has conflict Event !  ");
-        } else
-            System.out.println("Cantcat not found !");
-
+            } else {
+                System.out.println("\nContact not found.");
+            }
+        }
     }
-
+    
     // 5. Print event details
     // This method allows the user to print event details either by contact name or event title
     public static void PrintEvent() {

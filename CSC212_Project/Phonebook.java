@@ -396,10 +396,10 @@ public class Phonebook {
     // Main method to run the Phonebook application
     public static void main(String[] args) {
 
-        try {
-            System.out.println("Welcome to the Linked List Phonebook!");
-            int choice;
-            do {
+        System.out.println("Welcome to the Linked List Phonebook!");
+        int choice = -1;
+        do {
+            try {
                 choice = menu();
                 switch (choice) {
                     case 1:
@@ -446,10 +446,12 @@ public class Phonebook {
                         System.out.println("Bad choice! Try again");
                 }
                 System.out.println("\n");
-            } while (choice != 8); // Exit when user chooses option 8
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+            } catch (Exception e) {
+                System.out.println("Bad choice! Try again");
+                input.nextLine(); // Consume newline
+            }
+
+        } while (choice != 8); // Exit when user chooses option 8
     }
 
 }

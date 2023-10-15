@@ -35,7 +35,8 @@ public class Contact implements Comparable<Contact> {
         events = new LinkedListADT<Event>();
     }
 
-    // Override of the toString method to provide a string representation of the Contact object.
+    // Override of the toString method to provide a string representation of the
+    // Contact object.
     @Override
     public String toString() {
         return "\nName: " + name +
@@ -50,7 +51,7 @@ public class Contact implements Comparable<Contact> {
     public boolean addEvent(Event e) {
         events.insertSort(e);
         return true;
-    }    
+    }
 
     // Method to remove an event with a specific title from the list of events.
     public boolean removeEvent(String eTitle) {
@@ -65,7 +66,8 @@ public class Contact implements Comparable<Contact> {
         return false;
     }
 
-    // Implementation of the compareTo method from the Comparable interface to compare contacts based on their names.
+    // Implementation of the compareTo method from the Comparable interface to
+    // compare contacts based on their names.
     @Override
     public int compareTo(Contact o) {
         try {

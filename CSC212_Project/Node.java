@@ -35,7 +35,7 @@ public class Node<T> {
     public Node<T> getNext() {
         return next;
     }
-    
+
     // Setter for updating the reference to the next node.
     public void setNext(Node<T> next) {
         this.next = next;

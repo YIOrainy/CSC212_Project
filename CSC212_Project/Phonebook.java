@@ -32,7 +32,8 @@ public class Phonebook {
         return choice;
     }
 
-    // This method displays the submenu for searching contacts and returns user's choice
+    // This method displays the submenu for searching contacts and returns user's
+    // choice
     public static int subMenu2() {
         System.out.println("Enter search criteria:");
         System.out.println("1. Name");
@@ -46,7 +47,8 @@ public class Phonebook {
         return choice;
     }
 
-    // This method displays the submenu for searching events and returns user's choice
+    // This method displays the submenu for searching events and returns user's
+    // choice
     public static int subMenu5() {
         System.out.println("Enter search criteria:");
         System.out.println("1. contact name");
@@ -101,19 +103,20 @@ public class Phonebook {
     // 2. Search for a contact
     // This method allows the user to search for a contact based on various criteria
     public static void SearchContact() {
-    	boolean found = false;  //this boolean works like a switch. on(true) --> Contact found/ off(false) --> Contact not found.
-    	int choice = subMenu2();
+        boolean found = false; // this boolean works like a switch. on(true) --> Contact found/ off(false) -->
+                               // Contact not found.
+        int choice = subMenu2();
         if (contacts.empty())
-        	System.out.println("Contact not found!");
+            System.out.println("Contact not found!");
         else {
             contacts.findFirst();
             switch (choice) {
                 case 1: {
-                	
+
                     // Search for contact by name
                     System.out.print("Enter the contact\'s name: ");
                     String name = input.nextLine();
-                    
+
                     for (int i = 0; i < contacts.size; i++) {
                         if (contacts.retrieve().name.compareTo(name) == 0) {
                             System.out.println("Contact found!");
@@ -123,9 +126,9 @@ public class Phonebook {
                         }
                         contacts.findNext();
                     }
-                    if(!found)
-                    	System.out.println("Contact Not found!");
-                  
+                    if (!found)
+                        System.out.println("Contact Not found!");
+
                 }
                     break;
 
@@ -143,8 +146,8 @@ public class Phonebook {
                         }
                         contacts.findNext();
                     }
-                    if(!found)
-                    	System.out.println("Contact Not found!");
+                    if (!found)
+                        System.out.println("Contact Not found!");
                 }
                     break;
 
@@ -161,9 +164,9 @@ public class Phonebook {
                         }
                         contacts.findNext();
                     }
-                    if(!found)
-                    	System.out.println("Contact not found!");
-                    
+                    if (!found)
+                        System.out.println("Contact not found!");
+
                 }
                     break;
 
@@ -180,8 +183,8 @@ public class Phonebook {
                         }
                         contacts.findNext();
                     }
-                    if(!found)
-                    	System.out.println("Contact not found!");
+                    if (!found)
+                        System.out.println("Contact not found!");
                 }
                     break;
 
@@ -198,8 +201,8 @@ public class Phonebook {
                         }
                         contacts.findNext();
                     }
-                    if(!found)
-                    	System.out.println("Contact not found!");
+                    if (!found)
+                        System.out.println("Contact not found!");
                 }
             }
         }
@@ -244,25 +247,26 @@ public class Phonebook {
     }
 
     // 4. Schedule an event
-    // This method allows the user to schedule an event and associate it with a contact
+    // This method allows the user to schedule an event and associate it with a
+    // contact
     public static void ScheduleEvent() {
         Contact c = new Contact();
         Event e = new Event();
-    
+
         System.out.print("Enter event title: ");
         e.title = input.nextLine();
-    
+
         System.out.print("Enter contact name: ");
         c.name = input.nextLine();
-    
+
         System.out.print("Enter event date and time (MM/DD/YYYY HH:MM): ");
         e.date = input.next();
         e.time = input.next();
         input.nextLine(); // Consume newline
-    
+
         System.out.print("Enter event location: ");
         e.location = input.nextLine();
-    
+
         boolean conflictFound = false;
         if (!events.empty()) {
             events.findFirst();
@@ -275,7 +279,7 @@ public class Phonebook {
                 events.findNext();
             }
         }
-    
+
         if (conflictFound) {
             System.out.println("\nThere's a scheduling conflict. The event could not be added.");
         } else {
@@ -283,7 +287,7 @@ public class Phonebook {
                 c = contacts.retrieve();
                 c.addEvent(e); // Directly adding the event as we've already checked for conflicts
                 contacts.update(c);
-                
+
                 if (!events.empty() && events.search(e)) {
                     Event eventFound = events.retrieve();
                     eventFound.contacts_names.insertSort(c.name);
@@ -297,9 +301,10 @@ public class Phonebook {
             }
         }
     }
-    
+
     // 5. Print event details
-    // This method allows the user to print event details either by contact name or event title
+    // This method allows the user to print event details either by contact name or
+    // event title
     public static void PrintEvent() {
         int choice = subMenu5();
         switch (choice) {
@@ -354,7 +359,7 @@ public class Phonebook {
         System.out.print("Enter the first name:");
         String fname = input.nextLine();
 
-        if (contacts.empty()){
+        if (contacts.empty()) {
             System.out.println("No Contacts found !");
             return;
         }
@@ -364,18 +369,19 @@ public class Phonebook {
             String name = contacts.retrieve().name;
             String[] All = name.split(" ");
 
-            if (All[0].compareToIgnoreCase(fname) == 0){
+            if (All[0].compareToIgnoreCase(fname) == 0) {
                 System.out.println(contacts.retrieve() + "\n");
                 found = true;
             }
             contacts.findNext();
         }
-        if(!found)
+        if (!found)
             System.out.println("No Contacts found !");
     }
 
     // 7. Print all events alphabetically // O(n)
-    // This method allows the user to print all events in the phonebook in alphabetical order
+    // This method allows the user to print all events in the phonebook in
+    // alphabetical order
     public static void PrintAllEvents() {
         if (!events.empty()) {
             events.findFirst();

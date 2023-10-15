@@ -25,7 +25,8 @@ public class LinkedListADT<T extends Comparable<T>> {
         return current.next == null;
     }
 
-    // Method to check if the linked list is full (always returns false in this implementation).
+    // Method to check if the linked list is full (always returns false in this
+    // implementation).
     public boolean full() {
         return false;
     }

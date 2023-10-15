@@ -396,56 +396,60 @@ public class Phonebook {
     // Main method to run the Phonebook application
     public static void main(String[] args) {
 
-        System.out.println("Welcome to the Linked List Phonebook!");
-        int choice;
-        do {
-            choice = menu();
-            switch (choice) {
-                case 1:
-                    // Option to add a new contact to the phonebook
-                    AddContact();
-                    break;
+        try {
+            System.out.println("Welcome to the Linked List Phonebook!");
+            int choice;
+            do {
+                choice = menu();
+                switch (choice) {
+                    case 1:
+                        // Option to add a new contact to the phonebook
+                        AddContact();
+                        break;
 
-                case 2:
-                    // Option to search for a contact based on various criteria
-                    SearchContact();
-                    break;
+                    case 2:
+                        // Option to search for a contact based on various criteria
+                        SearchContact();
+                        break;
 
-                case 3:
-                    // Option to delete a contact from the phonebook
-                    DeleteContact();
-                    break;
+                    case 3:
+                        // Option to delete a contact from the phonebook
+                        DeleteContact();
+                        break;
 
-                case 4:
-                    // Option to schedule an event and associate it with a contact
-                    ScheduleEvent();
-                    break;
+                    case 4:
+                        // Option to schedule an event and associate it with a contact
+                        ScheduleEvent();
+                        break;
 
-                case 5:
-                    // Option to print event details either by contact name or event title
-                    PrintEvent();
-                    break;
+                    case 5:
+                        // Option to print event details either by contact name or event title
+                        PrintEvent();
+                        break;
 
-                case 6:
-                    // Option to print contacts that have a specific first name
-                    PrintContactsFirstName();
-                    break;
+                    case 6:
+                        // Option to print contacts that have a specific first name
+                        PrintContactsFirstName();
+                        break;
 
-                case 7:
-                    // Option to print all events in the phonebook in alphabetical order
-                    PrintAllEvents();
-                    break;
+                    case 7:
+                        // Option to print all events in the phonebook in alphabetical order
+                        PrintAllEvents();
+                        break;
 
-                case 8:
-                    // Option to exit the application
-                    System.out.println("Goodbye!");
-                    break;
-                default:
-                    // In case the user enters an invalid choice
-                    System.out.println("Bad choice! Try again");
-            }
-            System.out.println("\n");
-        } while (choice != 8); // Exit when user chooses option 8
+                    case 8:
+                        // Option to exit the application
+                        System.out.println("Goodbye!");
+                        break;
+                    default:
+                        // In case the user enters an invalid choice
+                        System.out.println("Bad choice! Try again");
+                }
+                System.out.println("\n");
+            } while (choice != 8); // Exit when user chooses option 8
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
 }

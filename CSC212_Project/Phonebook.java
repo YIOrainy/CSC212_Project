@@ -290,7 +290,7 @@ public class Phonebook {
                     events.update(eventFound);
                 } else {
                     events.insertSort(e);
-                    System.out.println("\nEvent Added Successfully !");
+                    System.out.println("\nEvent Scheduled Successfully !");
                 }
             } else {
                 System.out.println("\nContact not found.");

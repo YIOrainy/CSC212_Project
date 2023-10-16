@@ -48,7 +48,7 @@ public class Event implements Comparable<Event> {
         String str = "\nEvent title: " + title +
                     "\nEvent date and time (MM/DD/YYYY HH:MM): " + date + " " + time +
                    "\nEvent location: " + location + "\n" +
-                    "\nContacts names:   " ;
+                    "\nContacts names: ";
                 
         contacts_names.findFirst();
          for ( int i = 0 ; i < contacts_names.size ; i++ )

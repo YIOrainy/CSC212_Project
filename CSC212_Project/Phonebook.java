@@ -93,7 +93,7 @@ public class Phonebook {
         System.out.print("Enter any notes for the contact: ");
         c.notes = input.nextLine();
 
-        if (contacts.insertSort(c))
+        if (contacts.add(c))
             System.out.println("\nContact added successfully!");
 
     }
@@ -286,10 +286,10 @@ public class Phonebook {
                 
                 if (!events.empty() && events.search(e)) {
                     Event eventFound = events.retrieve();
-                    eventFound.contacts_names.insertSort(c.name);
+                    eventFound.contacts_names.add(c.name);
                     events.update(eventFound);
                 } else {
-                    events.insertSort(e);
+                    events.add(e);
                     System.out.println("\nEvent Scheduled Successfully !");
                 }
             } else {

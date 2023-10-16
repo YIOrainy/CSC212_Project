@@ -48,7 +48,7 @@ public class Contact implements Comparable<Contact> {
 
     // Method to add an event to the list of events associated with this contact.
     public boolean addEvent(Event e) {
-        events.insertSort(e);
+        events.add(e);
         return true;
     }    
 

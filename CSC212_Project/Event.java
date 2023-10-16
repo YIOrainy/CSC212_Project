@@ -24,13 +24,13 @@ public class Event implements Comparable<Event> {
         this.time = time;
         this.location = location;
         this.contacts_names = new LinkedListADT<String> ();
-        contacts_names.insertSort(contact);
+        contacts_names.add(contact);
     }
 
     // Method to add a contact to the list of contacts associated with this event.
     public boolean addContact (String contact)
     {
-        return contacts_names.insertSort(contact);
+        return contacts_names.add(contact);
     }
 
     // Method to remove a contact from the list of contacts associated with this event.

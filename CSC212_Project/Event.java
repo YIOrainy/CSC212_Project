@@ -6,7 +6,7 @@ public class Event implements Comparable<Event> {
     String date; // Format: 2023/12/31
     String time;
     String location;
-    LinkedListADT <String> contacts_names;
+    LinkedList <String> contacts_names;
 
     // Default constructor to initialize the event with empty values.
     public Event() {
@@ -14,7 +14,7 @@ public class Event implements Comparable<Event> {
         this.date = "";
         this.time = "";
         this.location = "";
-        this.contacts_names = new LinkedListADT<String> ();
+        this.contacts_names = new LinkedList<String> ();
     }
 
     // Constructor to initialize the event with provided values and an initial contact.
@@ -23,7 +23,7 @@ public class Event implements Comparable<Event> {
         this.date = date;
         this.time = time;
         this.location = location;
-        this.contacts_names = new LinkedListADT<String> ();
+        this.contacts_names = new LinkedList<String> ();
         contacts_names.add(contact);
     }
 

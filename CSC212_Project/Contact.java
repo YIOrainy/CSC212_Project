@@ -10,7 +10,7 @@ public class Contact implements Comparable<Contact> {
     String address;
     String birthday;
     String notes;
-    LinkedListADT<Event> events;
+    LinkedList<Event> events;
 
     // Constructor to initialize the contact with an empty state.
     public Contact() {
@@ -20,7 +20,7 @@ public class Contact implements Comparable<Contact> {
         this.address = "";
         this.birthday = "";
         this.notes = "";
-        events = new LinkedListADT<Event>();
+        events = new LinkedList<Event>();
     }
 
     // Constructor to initialize the contact with the provided values.
@@ -32,7 +32,7 @@ public class Contact implements Comparable<Contact> {
         this.address = address;
         this.birthday = birthday;
         this.notes = notes;
-        events = new LinkedListADT<Event>();
+        events = new LinkedList<Event>();
     }
 
     // Override of the toString method to provide a string representation of the

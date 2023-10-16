@@ -2,7 +2,7 @@ package CSC212_Project; // This specifies the package to which this class belong
 
 // This specifies the package to which this class belongs.
 
-public class LinkedListADT<T extends Comparable<T>> {
+public class LinkedList<T extends Comparable<T>> {
 
     // Private fields to store the head, current node, and size of the linked list.
     private Node<T> head;
@@ -10,7 +10,7 @@ public class LinkedListADT<T extends Comparable<T>> {
     public int size;
 
     // Constructor to initialize the linked list with an empty state.
-    public LinkedListADT() {
+    public LinkedList() {
         size = 0;
         head = current = null;
     }

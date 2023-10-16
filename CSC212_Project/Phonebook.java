@@ -10,10 +10,10 @@ public class Phonebook {
     public static Scanner input = new Scanner(System.in);
 
     // Creating a linked list to store contacts
-    public static LinkedListADT<Contact> contacts = new LinkedListADT<Contact>();
+    public static LinkedList<Contact> contacts = new LinkedList<Contact>();
 
     // Creating a linked list to store events
-    public static LinkedListADT<Event> events = new LinkedListADT<Event>();
+    public static LinkedList<Event> events = new LinkedList<Event>();
 
     // This method displays the main menu and returns user's choice
     public static int menu() {

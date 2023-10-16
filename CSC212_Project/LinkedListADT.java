@@ -52,7 +52,7 @@ public class LinkedListADT<T extends Comparable<T>> {
     }
 
     // Method to insert a new node with data in sorted order in the linked list.
-    public boolean insertSort(T val) {
+    public boolean add(T val) {
 
         Node<T> tmp;
         if (empty()) {

@@ -229,13 +229,11 @@ public class Phonebook {
                         Event e = c.events.retrieve();
                         if (events.search(e)) {
                             Event Update_Event = events.retrieve();
-                            Update_Event.removeContact(c.name);
-                            if (Update_Event.contacts_names.empty()) {
-                                events.remove(e);
+                            // Check if the contact name in the event matches the contact being deleted
+                            if (Update_Event.contact_name.equals(c.name)) {
+                                events.remove(e);  // Remove the event if the contact associated with it is being deleted
                                 System.out.println("Delete event, No cantact particapate");
-                            } else
-                                events.update(Update_Event);
-
+                            } 
                         }
                         c.events.findNext();
                     }
@@ -295,9 +293,10 @@ public class Phonebook {
 
                 if (!events.empty() && events.search(e)) {
                     Event eventFound = events.retrieve();
-                    eventFound.contacts_names.add(c.name);
+                    eventFound.contact_name = c.name;
                     events.update(eventFound);
                 } else {
+                    e.contact_name = c.name;
                     events.add(e);
                     System.out.println("\nEvent Scheduled Successfully !");
                 }

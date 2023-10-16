@@ -6,7 +6,7 @@ public class Event implements Comparable<Event> {
     String date; // Format: 2023/12/31
     String time;
     String location;
-    LinkedList <String> contacts_names;
+    String contact_name;
 
     // Default constructor to initialize the event with empty values.
     public Event() {
@@ -14,7 +14,7 @@ public class Event implements Comparable<Event> {
         this.date = "";
         this.time = "";
         this.location = "";
-        this.contacts_names = new LinkedList<String> ();
+        this.contact_name = "";
     }
 
     // Constructor to initialize the event with provided values and an initial contact.
@@ -23,24 +23,18 @@ public class Event implements Comparable<Event> {
         this.date = date;
         this.time = time;
         this.location = location;
-        this.contacts_names = new LinkedList<String> ();
-        contacts_names.add(contact);
+        this.contact_name = contact;
     }
 
-    // Method to add a contact to the list of contacts associated with this event.
-    public boolean addContact (String contact)
-    {
-        return contacts_names.add(contact);
+    // Method to remove a contact from this event. (Not needed)
+    public boolean removeContact(String contact) {
+    if (contact_name.equals(contact)) {
+        contact_name = "";  // Reset the contact name
+        return true;
     }
+    return false;
+}
 
-    // Method to remove a contact from the list of contacts associated with this event.
-    public boolean removeContact(String contact)
-    {
-            String name = contacts_names.remove(contact);
-            if ( name != null)
-                return true; 
-            return false;
-    }
 
     // Override of the toString method to provide a string representation of the Event object.
     @Override
@@ -48,14 +42,7 @@ public class Event implements Comparable<Event> {
         String str = "\nEvent title: " + title +
                     "\nEvent date and time (MM/DD/YYYY HH:MM): " + date + " " + time +
                    "\nEvent location: " + location + "\n" +
-                    "\nContacts names: ";
-                
-        contacts_names.findFirst();
-         for ( int i = 0 ; i < contacts_names.size ; i++ )
-         {
-             str += contacts_names.retrieve() + "\t";
-             contacts_names.findNext();
-         }
+                    "\nContacts names: " + contact_name;
           return str;
     }
 

@@ -51,20 +51,6 @@ public class LinkedListADT<T extends Comparable<T>> {
         current.data = val;
     }
 
-    // Method to insert a new node with data at the end of the linked list.
-    public void insertAtEnd(T val) {
-        if (empty()) {
-            current = head = new Node(val);
-        } else {
-            while (current.next != null)
-                current = current.next;
-
-            current.next = new Node(val);
-            current = current.next;
-        }
-        size++;
-    }
-
     // Method to insert a new node with data in sorted order in the linked list.
     public boolean insertSort(T val) {
 

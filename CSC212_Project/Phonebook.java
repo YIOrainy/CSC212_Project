@@ -67,7 +67,7 @@ public class Phonebook {
         c.name = input.nextLine();
 
         if (!contacts.empty() && contacts.search(c)) {
-            System.out.println("Contact found!");
+            System.out.println("There is a contact has same name you entered!");
             return;
         }
         System.out.print("Enter the contact's phone number: ");
@@ -77,7 +77,7 @@ public class Phonebook {
             contacts.findFirst();
             for (int i = 0; i < contacts.size; i++) {
                 if (contacts.retrieve().phoneNumber.compareTo(c.phoneNumber) == 0) {
-                    System.out.println("Contact found!");
+            System.out.println("There is a contact has same phone number you entered!");
                     return;
                 }
                 contacts.findNext();
@@ -105,10 +105,11 @@ public class Phonebook {
     public static void SearchContact() {
         boolean found = false; // this boolean works like a switch. on(true) --> Contact found/ off(false) -->
                                // Contact not found.
-        int choice = subMenu2();
         if (contacts.empty())
-            System.out.println("Contact not found!");
+            System.out.println("No Contacts have been added yet!");
+            
         else {
+             int choice = subMenu2();
             contacts.findFirst();
             switch (choice) {
                 case 1: {
@@ -212,13 +213,12 @@ public class Phonebook {
     // This method allows the user to delete a contact from the phonebook
     public static void DeleteContact() {
         Contact c = new Contact();
-
-        System.out.print("Enter the contact\'s name: ");
-        c.name = input.nextLine();
-
+        
         if (contacts.empty())
-            System.out.println("Contact not found!");
+            System.out.println("No Contacts have been added yet!");
         else {
+            System.out.print("Enter the contact\'s name: ");
+            c.name = input.nextLine();
             c = contacts.remove(c);
             if (c == null)
                 System.out.println("Contact not found!");
@@ -250,6 +250,11 @@ public class Phonebook {
     // This method allows the user to schedule an event and associate it with a
     // contact
     public static void ScheduleEvent() {
+         if(contacts.empty()){
+            System.out.println("No Contacts have been added yet!");
+            return;
+        }
+        
         Contact c = new Contact();
         Event e = new Event();
 
@@ -279,11 +284,11 @@ public class Phonebook {
                 events.findNext();
             }
         }
-
+    
         if (conflictFound) {
             System.out.println("\nThere's a scheduling conflict. The event could not be added.");
         } else {
-            if (!contacts.empty() && contacts.search(c) == true) {
+            if (contacts.search(c) == true) {
                 c = contacts.retrieve();
                 c.addEvent(e); // Directly adding the event as we've already checked for conflicts
                 contacts.update(c);
@@ -306,6 +311,10 @@ public class Phonebook {
     // This method allows the user to print event details either by contact name or
     // event title
     public static void PrintEvent() {
+        if(contacts.empty()) {
+    		System.out.println("No Contacts have been added yet! ");
+    		return;
+        }
         int choice = subMenu5();
         switch (choice) {
             case 1: {
@@ -314,7 +323,7 @@ public class Phonebook {
                 System.out.print("Enter the contact name :  ");
                 c.name = input.nextLine();
 
-                if (!contacts.empty()) {
+                
                     if (contacts.search(c) == true) {
                         System.out.println("Contact found !");
                         c = contacts.retrieve();
@@ -331,8 +340,6 @@ public class Phonebook {
                             System.out.println("No events found for this contact !");
                     } else
                         System.out.println("Contact not found !");
-                } else
-                    System.out.println("Contact not found !");
             }
                 break;
 
@@ -355,14 +362,14 @@ public class Phonebook {
     // 6. Print contacts by first name
     // This method allows the user to print contacts that have a specific first name
     public static void PrintContactsFirstName() {
+         if (contacts.empty()) {
+            System.out.println("No Contacts have been added yet!");
+            return;
+        }
+        
         boolean found = false;
         System.out.print("Enter the first name:");
         String fname = input.nextLine();
-
-        if (contacts.empty()) {
-            System.out.println("No Contacts found !");
-            return;
-        }
 
         contacts.findFirst();
         for (int i = 0; i < contacts.size; i++) {

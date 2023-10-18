@@ -122,14 +122,4 @@ public class LinkedList<T extends Comparable<T>> {
         size--;
         return data;
     }
-
-    // Method to print all elements in the linked list.
-    public void printAll() {
-        Node p = head;
-        while (p != null) {
-            System.out.print(p.data + "    ");
-            p = p.next;
-        }
-        System.out.println("");
-    }
 }

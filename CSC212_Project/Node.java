@@ -1,3 +1,15 @@
+/****************************
+CLASS: Node.java
+CSC212 Data structures - Project phase I
+Fall 2023
+EDIT DATE:
+17-10-2023
+TEAM:
+Osamah Sarraj
+AUTHORS:
+Osamah Sarraj
+***********************************/
+
 package CSC212_Project;
 
 // Node class represents a node in a linked list.
